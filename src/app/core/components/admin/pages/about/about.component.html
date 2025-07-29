@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <h2 class="mb-4">About Section</h2>
+
+  <form [formGroup]="aboutForm" (ngSubmit)="save()">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="mission" class="form-label fw-bold">Mission</label>
+        <textarea
+          id="mission"
+          formControlName="mission"
+          class="form-control"
+          rows="6"
+        ></textarea>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="vision" class="form-label fw-bold">Vision</label>
+        <textarea
+          id="vision"
+          formControlName="vision"
+          class="form-control"
+          rows="6"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="text-end">
+      <button
+        type="submit"
+        class="btn btn-primary px-4"
+        [disabled]="isSaving"
+      >
+        {{ isSaving ? 'Saving...' : 'Save' }}
+      </button>
+    </div>
+  </form>
+</div>

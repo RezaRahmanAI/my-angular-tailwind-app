@@ -1,0 +1,36 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-slider">
+    <div 
+      class="slide" 
+      *ngFor="let slide of slides; let i = index"
+      [class.active]="i === currentSlideIndex"
+      [style.background-image]="'url(' + slide.image + ')'"
+    >
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <h1 class="slide-title" [class.animate]="i === currentSlideIndex">
+          {{ slide.title }}
+        </h1>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Slide Indicators -->
+  <div class="slide-indicators">
+    <button 
+      *ngFor="let slide of slides; let i = index"
+      class="indicator"
+      [class.active]="i === currentSlideIndex"
+      (click)="goToSlide(i)"
+    ></button>
+  </div>
+  
+  <!-- Social Media Icons -->
+  <div class="social-media">
+    <a href="#" class="social-icon" title="Facebook">📘</a>
+    <a href="#" class="social-icon" title="Instagram">📷</a>
+    <a href="#" class="social-icon" title="Twitter">🐦</a>
+    <a href="#" class="social-icon" title="LinkedIn">💼</a>
+  </div>
+</section>

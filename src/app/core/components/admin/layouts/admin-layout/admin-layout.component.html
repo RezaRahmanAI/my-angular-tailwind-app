@@ -1,0 +1,24 @@
+<div class="d-flex" style="height: 100vh;">
+  <!-- Sidebar -->
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+    <a href="/admin" class="d-flex align-items-center mb-3 text-white text-decoration-none">
+      <span class="fs-4">Admin Panel</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li><a routerLink="/admin/brand" routerLinkActive="active" class="nav-link text-white">Brand</a></li>
+      <li><a routerLink="/admin/category" routerLinkActive="active" class="nav-link text-white">Categories</a></li>
+      <li><a routerLink="/admin/product" routerLinkActive="active" class="nav-link text-white">Products</a></li>
+      <li><a routerLink="/admin/employee" routerLinkActive="active" class="nav-link text-white">Employee</a></li>
+      <li><a routerLink="/admin/about" routerLinkActive="active" class="nav-link text-white">About</a></li>
+      <li><a routerLink="/admin/gallery" routerLinkActive="active" class="nav-link text-white">Gallery</a></li>
+      <li><a routerLink="/admin/contact" routerLinkActive="active" class="nav-link text-white">Contact</a></li>
+
+    </ul>
+  </div>
+
+  <!-- Content -->
+  <div class="p-4 flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
+</div>

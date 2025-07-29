@@ -1,0 +1,28 @@
+<div class="container py-4">
+  <h3 class="mb-4">Contact Messages</h3>
+
+  <div *ngIf="loading" class="text-muted">Loading...</div>
+
+  <table *ngIf="!loading && messages.length" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Message</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let msg of messages">
+        <td>{{ msg.name }}</td>
+        <td>{{ msg.email }}</td>
+        <td>{{ msg.phoneNumber }}</td>
+        <td>{{ msg.massage }}</td>
+        <td>{{ msg.createdAt | date: 'medium' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && !messages.length" class="text-muted">No messages found.</div>
+</div>

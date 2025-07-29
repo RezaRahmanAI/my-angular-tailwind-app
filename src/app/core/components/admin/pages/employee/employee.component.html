@@ -1,0 +1,72 @@
+<div class="container-fluid p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Employee List</h2>
+    <button class="btn btn-primary" (click)="openCreateDialog()">
+      <i class="bi bi-plus-lg"></i> Add Employee
+    </button>
+  </div>
+
+  <div class="table-responsive rounded">
+    <table class="table table-hover align-middle table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Image</th>
+          <th>Feedback</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees$ | async; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.position }}</td>
+          <td>
+            <img
+              *ngIf="emp.image"
+              [src]="emp.image"
+              alt="Profile"
+              width="60"
+              height="60"
+              class="rounded-circle"
+            />
+          </td>
+          <td>{{ emp.feedBack || "N/A" }}</td>
+          <td class="text-center">
+            <button
+              class="btn btn-sm btn-warning me-2"
+              (click)="openEditDialog(emp)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="openDeleteConfirmation(emp.id)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-create-employee
+  *ngIf="showCreateDialog"
+  [editEmployee]="editEmployee"
+  (employeeCreated)="handleEmployeeCreated($event)"
+  (employeeUpdated)="handleEmployeeUpdated($event)"
+  (cancelled)="cancelCreateDialog()"
+></app-create-employee>
+
+
+  <app-confirm-dialog
+    *ngIf="showConfirmDialog"
+    message="Are you sure you want to delete this employee?"
+    (confirmed)="onDeleteConfirmation($event)"
+    (cancelled)="cancelDelete()"
+  ></app-confirm-dialog>
+</div>

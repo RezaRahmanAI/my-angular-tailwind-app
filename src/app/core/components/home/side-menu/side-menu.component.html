@@ -1,0 +1,50 @@
+<!-- Side Menu -->
+<div class="side-menu" [class.open]="sideMenuOpen">
+  <div class="side-menu-content">
+    <button class="close-btn" (click)="toggleSideMenu()">×</button>
+    
+    <!-- Main Menu -->
+    <div class="main-menu">
+      <a href="#" class="main-menu-item">Home</a>
+      <a href="#" class="main-menu-item">About Us</a>
+      <a href="#" class="main-menu-item">Projects</a>
+      <a href="#" class="main-menu-item">Contact</a>
+    </div>
+    
+    <!-- Extra Menus -->
+    <div class="extra-menus">
+      <div class="menu-section" (click)="handleMenuClick('properties')">
+        <h3>Properties</h3>
+        <div class="menu-options">
+          <div class="menu-option">Residential</div>
+          <div class="menu-option">Commercial</div>
+          <div class="menu-option">Luxury Homes</div>
+          <div class="menu-option">Apartments</div>
+        </div>
+        <div class="arrow-icon">↓</div>
+      </div>
+      
+      <div class="menu-section" (click)="handleMenuClick('services')">
+        <h3>Services</h3>
+        <div class="menu-options">
+          <div class="menu-option">Property Management</div>
+          <div class="menu-option">Investment Consulting</div>
+          <div class="menu-option">Market Analysis</div>
+          <div class="menu-option">Legal Support</div>
+        </div>
+        <div class="arrow-icon">↓</div>
+      </div>
+      
+      <div class="menu-section" (click)="handleMenuClick('contact')">
+        <h3>Contact</h3>
+        <div class="menu-options">
+          <div class="menu-option">📞 (555) 123-4567</div>
+          <div class="menu-option">📧 info&#64;prestigerealty.com</div>
+          <div class="menu-option">📍 123 Real Estate Ave</div>
+          <div class="menu-option">🌐 Schedule Visit</div>
+        </div>
+        <div class="arrow-icon">↓</div>
+      </div>
+    </div>
+  </div>
+</div>
