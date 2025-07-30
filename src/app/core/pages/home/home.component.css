@@ -1,51 +1,114 @@
-:root {
-  --primary-color: #1c1c1c;
-  --secondary-color: #fbb034;
-  --light-gray: #f5f5f5;
-  --text-dark: #333;
+a {
+  font-family: "Playfair Display", serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
 }
 
-.home-container {
-  font-family: 'Segoe UI', sans-serif;  
-  color: white;
+h1 {
+  font-family: "Playfair Display", serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
 }
 
-
-
-/* Services Section */
-.services {  
-  padding: 60px 20px;
-  text-align: center;
+.vision_banner {
+  background: url('/images/banner/banner-3.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
 }
-.services h2 {
-  margin-bottom: 40px;
-  font-size: 32px;
+
+.explore_item a img {
+  transform-origin: center center;
+  object-fit: cover;
 }
-.card-container {
+
+.explore_item:hover a img {
+  transform: scale(1.1);
+}
+
+.explore_item:hover .explore_item_text p:nth-child(2) {
+  transform: translateY(0);
+}
+
+/* Swiper Web Component Styles */
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+swiper-slide {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 24px;
-}
-.card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 20px;
-  width: 280px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-}
-.card img {
-  width: 100px;
-  height: auto;
-  margin-bottom: 16px;
-}
-.card h3 {
-  margin-bottom: 12px;
-  font-size: 20px;
+  height: 500px;
 }
 
+swiper-slide img {
+  transition: transform 0.6s ease-in-out, height 0.6s ease-in-out;
+}
+
+swiper-slide-active img {
+  height: 650px !important;
+}
+
+swiper-slide {
+  transform: scale(0.9);
+  transition: transform 0.5s ease;
+}
+
+swiper-slide-active {
+  transform: scale(1);
+}
+
+swiper-container .swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media only screen and (max-width: 640px) {
+  swiper-slide {
+    height: 225px !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  swiper-slide {
+    height: 325px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  swiper-slide {
+    height: 550px !important;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  swiper-slide {
+    height: 550px !important;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  swiper-slide {
+    height: 700px !important;
+  }
+}
+
+.project_card_img img {
+  filter: brightness(0.5);
+  transform-origin: center center;
+  transition: ease-in-out 500ms;
+}
+
+.project_card:hover .project_card_img img {
+  transform: scale(1.1);
+  filter: brightness(0.8);
+}
+
+.project_card:hover .project_card_details {
+  color: #1b85ff;
+}

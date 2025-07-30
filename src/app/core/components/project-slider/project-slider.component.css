@@ -86,36 +86,9 @@
   border-radius: 9999px;
 }
 
-/* Navigation buttons container */
-.nav-buttons {
-  position: absolute;
-  top: 0;
-  right: calc((100% / 3) + 1rem); /* just to the right of the featured card */
-  display: flex;
-  gap: 1rem;
-  width: calc(2 * ((100% / 3) - 1rem)); /* width equal to 2 smaller cards */
-  justify-content: space-between;
-  padding-bottom: 1rem;
-  pointer-events: auto;
-  z-index: 20;
-}
 
-.nav-buttons button {
-  background-color: #3b82f6;
-  border: none;
-  color: white;
-  border-radius: 9999px;
-  width: 44px;
-  height: 44px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.5);
-  transition: background-color 0.3s ease;
-}
 
-.nav-buttons button:hover {
-  background-color: #2563eb;
-}
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -131,10 +104,5 @@
     flex: 1 0 90%;
     transform: none;
   }
-  .nav-buttons {
-    position: static;
-    width: 100%;
-    justify-content: center;
-    margin-top: 1rem;
-  }
+
 }
