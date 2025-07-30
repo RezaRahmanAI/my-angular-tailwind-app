@@ -1,0 +1,57 @@
+<div class="our_projects m-10 md:px-2">
+  <div class="container mx-auto">
+    <div class="our_project_title mb-14 text-center md:text-left">
+      <h1 class="text-4xl lg:text-6xl mb-5 text-slate-800">Our Feature</h1>
+      <h1 class="md:ms-32 text-4xl lg:text-6xl text-slate-800">Projects</h1>
+    </div>
+
+    <div class="slider-wrapper" style="position: relative;">
+  <div class="slider-container">
+    <div
+      *ngFor="let project of visibleProjects(); let i = index"
+      class="project_card"
+      [ngClass]="{ featured: i === 0 }"
+    >
+      <a [routerLink]="'/projectdetails/' + project.id">
+        <div class="project_card_img">
+          <img
+            [src]="'/images/banner/banner_1.jpg'"
+            alt="{{ project.name }}"
+          />
+        </div>
+        <div class="project_card_details">
+          <h1>{{ project.name }}</h1>
+          <p>
+            {{ project.type }}
+            <span class="dot"></span>
+            {{ project.address }}
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button (click)="prev()">&larr;</button>
+    <button (click)="next()">&rarr;</button>
+  </div>
+</div>
+
+
+    <div
+      class="hidden adds items-center justify-between w-2/6 h-20 p-3 bg-blue-500 ring-2 ring-offset-2 ring-blue-500 mx-auto rounded-full shadow-xl mt-10"
+    >
+      <div class="px-4 flex items-center gap-3">
+        <i class="ri-bookmark-3-fill text-3xl text-slate-50"></i>
+        <span class="text-2xl font-semibold text-slate-50">Get In Touch</span>
+      </div>
+      <div>
+        <button
+          class="bg-slate-50 px-5 py-4 text-blue-500 rounded-full font-semibold hover:bg-slate-100 duration-500 ease-in-out"
+        >
+          Contacting Now
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

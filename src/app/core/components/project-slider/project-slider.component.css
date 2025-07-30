@@ -1,0 +1,140 @@
+.slider-wrapper {
+  position: relative;
+  width: 100vw;
+  overflow: visible; /* allow overflow so big card can show */
+  padding-left: 40px; /* add left padding so big card doesn't get cut */
+  box-sizing: border-box;
+}
+
+.slider-container {
+  display: flex;
+  gap: 20px;
+  overflow: visible; /* prevent clipping */
+  padding-bottom: 20px;
+  user-select: none;
+}
+
+.project_card {
+  flex: 1 0 calc((100% / 3) - 1rem);
+  border-radius: 1rem;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 380px;
+}
+
+.project_card.featured {
+  flex: 1.5 0 calc((100% / 3) - 1rem);
+  height: 420px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.project_card_img {
+  height: 280px;
+  overflow: hidden;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  flex-shrink: 0;
+}
+
+.project_card_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project_card:hover img {
+  transform: scale(1.05);
+}
+
+.project_card_details {
+  padding: 1rem;
+  flex-grow: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project_card_details h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.project_card_details p {
+  color: #6b7280;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.project_card_details p span.dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #6b7280;
+  border-radius: 9999px;
+}
+
+/* Navigation buttons container */
+.nav-buttons {
+  position: absolute;
+  top: 0;
+  right: calc((100% / 3) + 1rem); /* just to the right of the featured card */
+  display: flex;
+  gap: 1rem;
+  width: calc(2 * ((100% / 3) - 1rem)); /* width equal to 2 smaller cards */
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.nav-buttons button {
+  background-color: #3b82f6;
+  border: none;
+  color: white;
+  border-radius: 9999px;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slider-container {
+    gap: 0.5rem;
+  }
+  .project_card {
+    flex: 1 0 90%;
+    height: 350px;
+  }
+  .project_card.featured {
+    height: 380px;
+    flex: 1 0 90%;
+    transform: none;
+  }
+  .nav-buttons {
+    position: static;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
