@@ -14,11 +14,14 @@ import { Navigation, Pagination } from 'swiper/modules';
 // import { environment } from '../../environments/environment'; // Commented out
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ProjectSliderComponent } from "../../components/project-slider/project-slider.component";
+import { HeroComponent } from "../../components/hero/hero.component";
+import { FooterComponent } from "../../components/shared/footer/footer.component";
+import { NavbarComponent } from "../../components/shared/navbar/navbar.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProjectSliderComponent],
+  imports: [CommonModule, RouterModule, HeroComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Allows swiper-container and swiper-slide

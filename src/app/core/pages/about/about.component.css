@@ -1,0 +1,32 @@
+.headering {
+  background: url('/images/banner/banner-3.png') no-repeat center center;
+  background-size: cover;
+}
+
+p {
+  font-family: "Playfair Display", serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+h1 {
+  font-family: "Playfair Display", serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+
+.team_card:hover .team_name {
+  color: #1c7df8 !important;
+}
+.team_image img {
+  transform-origin: center center;
+  object-fit: cover;
+  transition: ease-in-out 500ms;
+}
+.team_card:hover .team_image img {
+  transform: scale(1.1);
+}
+.modal_team_iamge img {
+  object-fit: cover;
+}

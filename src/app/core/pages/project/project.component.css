@@ -1,0 +1,28 @@
+.headering {
+  background: url('/images/banner/banner-3.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+}
+
+h1 {
+  font-family: "Playfair Display", serif !important;
+  font-optical-sizing: auto !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+
+.project_card_img img {
+  filter: brightness(0.50);
+  transform-origin: center center;
+  transition: ease-in-out 500ms;
+}
+
+.project_card:hover .project_card_img img {
+  transform: scale(1.1);
+  filter: brightness(0.80);
+}
+
+.project_card:hover .project_card_details {
+  color: #1b85ff;
+}

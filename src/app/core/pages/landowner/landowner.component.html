@@ -1,0 +1,328 @@
+<div>
+  <div class="headering py-36 sm:py-48 md:py-64 lg:py-72 xl:py-[200px]"></div>
+  <div
+    class="page_title absolute top-1/4 sm:top-1/3 md:top-2/4 lg:top-2/3 xl:top-3/4 2xl:top-[40%] left-0"
+  >
+    <h1 class="text-2xl sm:text-3xl md:text-4xl text-slate-100 p-5">/ Landowner</h1>
+  </div>
+
+  <div class="landowner_text py-14 px-2">
+    <div class="lg:container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-0 xl:gap-16">
+        <div class="land_image md:px-5 w-full">
+          <a routerLink="">
+            <img
+              class="w-full h-[450px] md:h-[500px] lg:h-[550px] xl:h-[650px] rounded"
+              src="/images/banner/banner-3.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <div class="land_text !sticky !top-0 z-20 w-full">
+          <h1 class="text-4xl md:text-5xl mb-5 sm:mb-10 text-slate-800">
+            Company is the perfect choice for your joint ventures
+          </h1>
+          <p>
+            The decision to go for a joint venture on your land should be
+            guided by several criteria to ensure maximum returns on your
+            investment. At Sanmar, we consider landowners as our development
+            partners and accordingly, we plan out a business strategy that
+            compliments the land owner’s ROI aspirations. This is proven by
+            our rich history of always meeting and exceeding landowners'
+            expectations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="land_benifits pb-10 px-2">
+    <div class="lg:container mx-auto">
+      <h1 class="text-4xl text-slate-800 mb-10">Benefits</h1>
+
+      <div class="benifit_details">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+          <div>
+            <p class="mb-10">
+              The decision to go for a joint venture on your land should be
+              guided by several criteria to ensure maximum returns on your
+              investment. A few of these are:
+            </p>
+
+            <ul>
+              <li class="border-b py-4 text-lg">Strong brand association</li>
+              <li class="border-b py-4 text-lg">
+                Design excellence in terms of functionality and aesthetics
+              </li>
+              <li class="border-b py-4 text-lg">
+                Adherence to high quality construction
+              </li>
+              <li class="border-b py-4 text-lg">
+                Association with international architectural firms
+              </li>
+              <li class="border-b py-4 text-lg">
+                Adept sales and marketing teams
+              </li>
+              <li class="border-b py-4 text-lg">
+                Proficiency in Architectural, Electro-Mechanical, Electrical,
+                Plumbing and Structural design
+              </li>
+              <li class="border-b py-4 text-lg">
+                One stop shop for interior design and modification work
+              </li>
+              <li class="border-b py-4 text-lg">
+                World-class after sales service
+              </li>
+              <li class="border-b py-4 text-lg">
+                Efficiency in Project Management and Operations
+              </li>
+            </ul>
+          </div>
+          <div>
+            <a routerLink="">
+              <img
+              class="w-full h-[450px] md:h-[500px] lg:h-[550px] xl:h-[650px] rounded"
+              src="/images/banner/banner-3.png"
+              alt=""
+            />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonial py-10 bg-gray-100 px-2">
+    <div class="lg:container mx-auto">
+      <div class="testimonial_title mb-14 text-center sm:text-left">
+        <h1 class="text-4xl lg:text-6xl mb-3 lg:mb-5 text-slate-800">Land Owner</h1>
+        <h1 class="sm:ms-16 text-4xl lg:text-6xl text-slate-800">Testimonial</h1>
+      </div>
+      <div
+        class="flex flex-col md:flex-row items-center gap-0 lg:gap-10 bg-white p-6 rounded-lg"
+      >
+        <!-- Image Section -->
+        <div class="w-full md:w-1/3">
+          <img
+            *ngIf="state.testis[currentIndex]"
+            [src]="'/images/banner/banner-3.png'"
+            alt="Customer"
+            class="rounded-lg w-full h-[400px] md:h-[300px] lg:h-[400px] xl:h-[500px] object-cover"
+          />
+        </div>
+
+        <!-- Testimonial Content -->
+        <div class="w-full md:w-2/3 p-6">
+          <h2 class="text-2xl font-bold text-gray-900">
+            What our Land Owner are saying
+          </h2>
+          <p class="text-gray-500 text-sm">
+            Serving over 50k+ customers every month
+          </p>
+
+          <div class="bg-gray-100 p-4 rounded-lg mt-4">
+            <div class="flex text-yellow-500 mb-2">
+              <span *ngFor="let i of [1, 2, 3, 4, 5]" class="w-5 h-5">
+                ★
+              </span>
+            </div>
+            <p class="text-gray-700" *ngIf="state.testis[currentIndex]">
+              {{ state.testis[currentIndex].description }}
+            </p>
+            <div class="mt-4">
+              <p
+                class="font-semibold text-gray-900 text-lg"
+                *ngIf="state.testis[currentIndex]"
+              >
+                {{ state.testis[currentIndex].name }}
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center mt-4 space-x-4">
+            <button
+              (click)="prevTestimonial()"
+              class="w-10 h-10 rounded-full text-gray-600 hover:bg-blue-500 hover:text-slate-100 duration-500 ease-in-out"
+            >
+              ←
+            </button>
+            <p class="text-gray-600">
+              {{ currentIndex + 1 }} of {{ state.testis.length }}
+            </p>
+            <button
+              (click)="nextTestimonial()"
+              class="w-10 h-10 rounded-full text-gray-600 hover:bg-blue-500 hover:text-slate-100 duration-500 ease-in-out"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connect_form py-14 bg-slate-400 px-4">
+    <div class="container mx-auto w-full lg:w-[90%] xl:w-[50%]">
+      <h1 class="text-4xl md:text-5xl text-slate-800 mb-10">
+        Want to Form a Great Partnership ?
+      </h1>
+
+      <div class="mx-auto">
+        <form #landownerForm="ngForm" (ngSubmit)="createData()" class="w-full">
+          <div class="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              [(ngModel)]="landownerData.name"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_first_name"
+              class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Full Name *</label
+            >
+          </div>
+
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                type="number"
+                name="phone"
+                id="phone"
+                [(ngModel)]="landownerData.phone"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="phone"
+                class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Phone Number *</label
+              >
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                [(ngModel)]="landownerData.email"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="email"
+                class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Email address *</label
+              >
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="locality"
+                id="locality"
+                [(ngModel)]="landownerData.locality"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+                placeholder=" "
+                required
+              />
+              <label
+                for="floating_phone"
+                class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Locality*</label
+              >
+            </div>
+            <div class="">
+              <label for="select"></label>
+              <select
+                id="landCategory"
+                name="landCategory"
+                [(ngModel)]="landownerData.landCategory"
+                class="peer text-md text-slate-100 w-full p-2 bg-slate-400 border-0 border-b-2 border-slate-600 focus:outline-none focus:ring-0 focus:border-slate-700 appearance-none peer"
+                required
+              >
+                <option value="" selected class="text-sm">Land Category *</option>
+                <option value="Freehold">Freehold</option>
+                <option value="Leasehold">Leasehold</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="frontRoadWidth"
+                id="frontRoadWidth"
+                [(ngModel)]="landownerData.frontRoadWidth"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+                placeholder=" "
+              />
+              <label
+                for="frontRoadWidth"
+                class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Front Road Width</label
+              >
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+              <input
+                type="text"
+                name="facing"
+                id="facing"
+                [(ngModel)]="landownerData.facing"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+                placeholder=" "
+              />
+              <label
+                for="facing"
+                class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Facing</label
+              >
+            </div>
+          </div>
+          <div class="relative z-0 w-full mb-5 group">
+            <input
+              type="text"
+              name="address"
+              id="address"
+              [(ngModel)]="landownerData.address"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="address"
+              class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Land Address *</label
+            >
+          </div>
+          <div class="relative z-0 w-full mb-5 group">
+            <textarea
+              name="message"
+              id="message"
+              [(ngModel)]="landownerData.message"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
+              placeholder=" "
+              required
+            ></textarea>
+            <label
+              for="message"
+              class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Message</label
+            >
+          </div>
+          <button
+            type="submit"
+            class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
