@@ -1,0 +1,15 @@
+footer a {
+  transition: color .25s ease;
+}
+
+footer .form-wrapper input {
+  background: #f3f4f6;
+}
+
+footer .rounded-full {
+  font-size: 0.55rem;
+}
+
+footer .bg-indigo-700 {
+  background-color: #4f46e5;
+}

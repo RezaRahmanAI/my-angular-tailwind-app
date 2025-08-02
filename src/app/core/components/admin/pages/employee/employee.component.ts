@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 import { Employee } from '../../../../models/Employee.model';
 import { EmployeeService } from '../../../../services/employee.service';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
-import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-employee',

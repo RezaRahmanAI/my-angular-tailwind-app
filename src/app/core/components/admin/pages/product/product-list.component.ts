@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product.service';
 import { Product } from '../../../../models/product.model';
 import { RouterLink } from '@angular/router';
-import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm-dialog.component';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-product',
   standalone: true,
-  imports: [CommonModule, RouterLink, ConfirmDialogComponent], 
+  imports: [CommonModule, RouterLink, ConfirmDialogComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
 })
@@ -40,7 +40,7 @@ export class ProductListComponent implements OnInit {
       this.productService.delete(this.productToDeleteId).subscribe({
         next: () => {
           this.loadProducts();
-          this.productToDeleteId = null; 
+          this.productToDeleteId = null;
         },
         error: (err) => console.error('Delete failed:', err),
       });

@@ -1,209 +1,200 @@
-<div>
-  <div class="headering py-36 sm:py-48 md:py-64 lg:py-72 xl:py-[200px]"></div>
-  <div
-    class="page_title absolute top-1/4 sm:top-1/3 md:top-2/4 lg:top-2/3 xl:top-3/4 2xl:top-[40%] left-0"
-  >
-    <h1 class="text-2xl sm:text-3xl md:text-4xl text-slate-100 p-5">/ Contact Us</h1>
-  </div>
-
-  <div class="contact_page">
-    <div class="">
-      <div class="md:flex items-top justify-between gap-5">
-        <div
-          class="w-full md:w-[40%] lg:w-[40%] xl:w-[30%] p-5 sm:p-10 md:p-5"
-        >
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl mb-10 text-slate-800">
-            Keep in Touch
-          </h1>
-          <div>
-            <table class="w-full">
-              <tbody>
-                <tr>
-                  <td class="min-w-20 p-4">
-                    <i class="ri-map-pin-fill text-4xl text-blue-500"></i>
-                  </td>
-                  <td class="pe-16">
-                    <p class="">Corporate Office</p>
-                    <a href="#">Alokar more, Rajshahi, Bangladesh.</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="min-w-20 p-4">
-                    <i class="ri-mail-send-line text-4xl text-blue-500"></i>
-                  </td>
-                  <td class="pe-16">
-                    <p class="">Email</p>
-                    <a href="#">triconproperties21&#64;gmail.com</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="min-w-20 p-4">
-                    <i class="ri-phone-fill text-4xl text-blue-500"></i>
-                  </td>
-                  <td class="pe-16">
-                    <p>Sales Enquiry</p>
-                    <a href="#">01329-638961</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="min-w-20 p-4">
-                    <i class="ri-phone-fill text-4xl text-blue-500"></i>
-                  </td>
-                  <td class="pe-16">
-                    <p>General Enquiry</p>
-                    <a href="#">01739-703426</a>
-                  </td>
-                </tr>
-                <tr class="hidden">
-                  <td class="min-w-20 p-4">
-                    <i class="ri-phone-fill text-4xl text-blue-500"></i>
-                  </td>
-                  <td class="pe-16">
-                    <p>Joint Venture Development</p>
-                    <a href="#">01739-703426</a>
-                  </td>
-                </tr>
-                <tr class="hidden">
-                  <td class="min-w-20 p-4">
-                    <i class="ri-phone-fill text-4xl text-blue-500"></i>
-                  </td>
-                  <td class="pe-16">
-                    <p>International Calls</p>
-                    <a href="#">01XXX-XXXXXX</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="min-w-20 p-4">
-                    <i class="ri-whatsapp-fill text-4xl text-blue-500"></i>
-                  </td>
-                  <td class="pe-16">
-                    <p>WhatsApp</p>
-                    <a href="#">01739-703426</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="w-full md:w-[60%] lg:w-[60%]">
-          <div class="h-screen">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19412.96407524426!2d90.36601795!3d23.7963304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1742033667355!5m2!1sen!2sbd"
-              width="100%"
-              height="100%"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        </div>
+<div class="relative overflow-hidden">
+  <!-- Hero Section -->
+  <div class="headering relative">
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="hero-content relative z-10 text-center max-w-3xl mx-auto px-5 py-28 sm:py-40">
+      <h1 class="headline">
+        Find Your Dream Property in <span class="highlight">Rajshahi</span>
+      </h1>
+      <p class="subhead">
+        We help you buy, sell, or rent with confidence — expert guidance, local knowledge, and a personal touch.
+      </p>
+      <div class="cta-group">
+        <a routerLink="/projects" class="btn-modern btn-primary">
+          Browse Projects
+          <span class="icon-arrow" aria-hidden="true">→</span>
+        </a>
+        <a routerLink="/contact" class="btn-modern btn-secondary">
+          Get in Touch
+          <span class="underline-expand" aria-hidden="true"></span>
+        </a>
       </div>
+
     </div>
   </div>
 
-  <div class="connect_form py-8 sm:py-14 bg-slate-400">
-    <div
-      class="sm:container sm:mx-auto xl:w-[40%] lg:w-[50%] md:w-[60%] sm:w-[70%] w-full px-5"
-    >
-      <h1
-        class="text-3xl sm:text-4xl lg:text-5xl text-slate-800 mb-10 text-center"
-      >
-        Contact With Us
-      </h1>
+  <!-- Contact Info + Map -->
+  <section appReveal class="contact_page py-16">
+    <div class="container">
+      <div class="grid two-col gap-10">
+        <div class="info-panel">
+          <h2 class="section-title">Office & Support</h2>
+          <p class="lead">
+            Whether you're buying, selling, or scheduling a visit—our team is here to help. Fill the form and we'll reach out within 2 business hours.
+          </p>
+          <address class="address-block">
+            <div class="item">
+              <div class="icon"><i class="ri-map-pin-fill"></i></div>
+              <div>
+                <p class="label">Corporate Office</p>
+                <p>Alokar More, Rajshahi, Bangladesh.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="icon"><i class="ri-mail-send-line"></i></div>
+              <div>
+                <p class="label">Email</p>
+                <p><a href="mailto:triconproperties21@gmail.com">triconproperties21&#64;gmail.com</a></p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="icon"><i class="ri-phone-fill"></i></div>
+              <div>
+                <p class="label">Sales Enquiry</p>
+                <p><a href="tel:01329638961">01329-638961</a></p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="icon"><i class="ri-phone-fill"></i></div>
+              <div>
+                <p class="label">General Enquiry</p>
+                <p><a href="tel:01739703426">01739-703426</a></p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="icon"><i class="ri-whatsapp-fill"></i></div>
+              <div>
+                <p class="label">WhatsApp</p>
+                <p><a href="https://wa.me/8801739703426" target="_blank" rel="noopener">01739-703426</a></p>
+              </div>
+            </div>
+          </address>
+        </div>
 
-      <div class="mx-auto">
-        <form #contactForm="ngForm" (ngSubmit)="createData()" class="w-full">
-          <div class="mb-5">
-            <select
-              name="subject"
-              id="subject"
-              [(ngModel)]="contactData.subject"
-              class="peer text-sm sm:text-md text-slate-100 w-full py-2 px-0 bg-slate-400 border-0 border-b-2 border-slate-600 focus:outline-none focus:ring-0 focus:border-slate-700 appearance-none peer"
-              required
-            >
-              <option value="" selected class="text-sm">Reason for Contacting *</option>
-              <option value="Land Development">Land Development</option>
-              <option value="Apartment Buyer">Apartment Buyer</option>
-              <option value="Commercial Space Buyer">Commercial Space Buyer</option>
-              <option value="Land Buyer">Land Buyer</option>
-              <option value="After Sales Service">After Sales Service</option>
-              <option value="General Enquiry">General Enquiry</option>
-              <option value="Others">Others</option>
-            </select>
-          </div>
-          <div class="relative z-0 w-full mb-5 group">
+        <div class="map-wrapper shimmer-container" style="position: relative; min-height: 300px;">
+  <!-- shimmer placeholder; hidden when map loaded -->
+  <div
+    class="shimmer-wrapper"
+    [class.loaded]="isMapLoaded"
+    style="border-radius: .75rem;"
+  ></div>
+
+  <iframe
+    title="Office location on map"
+    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19412.96407524426!2d90.36601795!3d23.7963304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1742033667355!5m2!1sen!2sbd"
+    width="100%"
+    height="100%"
+    style="border:0;"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    (load)="onMapLoad()"
+  ></iframe>
+
+  <!-- fallback if needed -->
+  <div
+    *ngIf="!isMapLoaded"
+    aria-hidden="true"
+    class="map-fallback"
+    style="display:none;"
+  ></div>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Lead Capture Form -->
+  <section appReveal class="connect_form">
+    <div class="container max-w-form">
+      <div class="form-wrapper">
+        <h2 class="form-title">Request Your Consultation</h2>
+        <p class="form-sub">No obligation. One of our property experts will contact you within 2 business hours.</p>
+
+        <div *ngIf="errorMessage" class="feedback error">{{ errorMessage }}</div>
+        <div *ngIf="submitted" class="feedback success">Thank you! We’ll be in touch shortly.</div>
+
+        <form #contactForm="ngForm" (ngSubmit)="createData(contactForm)" novalidate class="form-grid">
+          
+          <div class="field-group">
+            <label for="name">Full Name *</label>
             <input
               type="text"
               name="name"
               id="name"
               [(ngModel)]="contactData.name"
-              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
-              placeholder=" "
               required
+              class="input"
+              placeholder="Your name"
             />
-            <label
-              for="name"
-              class="peer-focus:font-medium absolute text-sm sm:text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Name *</label
-            >
           </div>
-
-          <div class="relative z-0 w-full mb-5 group">
+          <div class="field-group">
+            <label for="phone">Phone Number *</label>
             <input
-              type="number"
+              type="tel"
               name="phone"
               id="phone"
               [(ngModel)]="contactData.phone"
-              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
-              placeholder=" "
               required
+              class="input"
+              placeholder="e.g. 01329-638961"
             />
-            <label
-              for="phone"
-              class="peer-focus:font-medium absolute text-sm sm:text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Phone Number *</label
-            >
           </div>
-          <div class="relative z-0 w-full mb-5 group">
+
+          <div class="field-group full-width">
+            <label for="email">Email *</label>
             <input
               type="email"
               name="email"
               id="email"
               [(ngModel)]="contactData.email"
-              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
-              placeholder=" "
               required
+              class="input"
+              placeholder="you@example.com"
             />
-            <label
-              for="email"
-              class="peer-focus:font-medium absolute text-sm sm:text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Email *</label
-            >
           </div>
-          <div class="relative z-0 w-full mb-5 group">
+
+          <div class="field-group full-width">
+            <label for="message">Details</label>
             <textarea
               name="message"
               id="message"
+              rows="3"
               [(ngModel)]="contactData.message"
-              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-slate-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-slate-700 peer"
-              placeholder=" "
-              required
+              class="input"
+              placeholder="Preferred area, special requests, best time to call..."
             ></textarea>
-            <label
-              for="message"
-              class="peer-focus:font-medium absolute text-md text-slate-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-slate-700 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >Message</label
-            >
           </div>
-          <button
-            type="submit"
-            class="mx-auto text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full md:w-auto px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Submit
-          </button>
+
+          <div class="field-group full-width">
+            <label for="visitDate">Preferred Visit Date (if scheduling)</label>
+            <input
+              type="date"
+              name="visitDate"
+              id="visitDate"
+              [(ngModel)]="contactData.visitDate"
+              class="input"
+            />
+          </div>
+
+          <div class="consent full-width">
+            <p class="text-xs">
+              By submitting, you agree to our <span class="font-semibold">privacy policy</span>. We’ll never share your information.
+            </p>
+          </div>
+
+          <div class="submit-wrapper full-width">
+            <button
+              type="submit"
+              [disabled]="submitting || contactForm.invalid"
+              class="btn large"
+            >
+              <span *ngIf="!submitting">Request Consultation</span>
+              <span *ngIf="submitting">Sending...</span>
+            </button>
+          </div>
         </form>
       </div>
     </div>
-  </div>
+  </section>
 </div>

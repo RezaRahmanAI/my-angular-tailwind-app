@@ -5,7 +5,7 @@ import { Brand } from '../../../../models/Brand.model';
 import { BrandService } from '../../../../services/brand.service';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm-dialog.component';
 import { CreateBrandComponent } from './create-brand/create-brand.component';
 
 @Component({

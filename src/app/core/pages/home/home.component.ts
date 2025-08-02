@@ -13,10 +13,10 @@ import { Navigation, Pagination } from 'swiper/modules';
 // import { HttpClient } from '@angular/common/http'; // Commented out
 // import { environment } from '../../environments/environment'; // Commented out
 import { trigger, transition, style, animate } from '@angular/animations';
-import { ProjectSliderComponent } from "../../components/project-slider/project-slider.component";
-import { HeroComponent } from "../../components/hero/hero.component";
-import { FooterComponent } from "../../components/shared/footer/footer.component";
-import { NavbarComponent } from "../../components/shared/navbar/navbar.component";
+import { ProjectSliderComponent } from '../../components/project-slider/project-slider.component';
+import { HeroComponent } from '../../components/hero/hero.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-home',

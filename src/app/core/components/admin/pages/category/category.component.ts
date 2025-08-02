@@ -4,17 +4,13 @@ import { Category } from '../../../../models/category.model';
 import { CategoryService } from '../../../../services/category.service';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm-dialog.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [
-    CommonModule,
-    ConfirmDialogComponent,
-    CreateCategoryComponent
-],
+  imports: [CommonModule, ConfirmDialogComponent, CreateCategoryComponent],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css',
 })

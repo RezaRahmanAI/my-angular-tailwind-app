@@ -1,32 +1,249 @@
+:root {
+  --bg: #f9f9fb;
+  --card-radius: 1rem;
+  --transition: .35s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow: 0 25px 60px -10px rgba(0,0,0,0.12);
+  --heading-font: "Playfair Display", serif;
+  --body-font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --accent: #6366f1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  background: var(--bg);
+  color: #1f2937;
+  line-height: 1.5;
+}
+
+/* Hero / header */
 .headering {
-  background: url('/images/banner/banner-3.png') no-repeat center center;
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(29,78,216,0.85), rgba(99,102,241,0.85)),
+    url('/images/banner/banner-3.png') no-repeat center/cover;
   background-size: cover;
+  min-height: 320px;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.1;
+  color: #1f2d46;
+}
+
+h1 {
+  font-weight: 700;
 }
 
 p {
-  font-family: "Playfair Display", serif !important;
-  font-optical-sizing: auto !important;
-  font-weight: 400 !important;
-  font-style: normal !important;
-}
-h1 {
-  font-family: "Playfair Display", serif !important;
-  font-optical-sizing: auto !important;
-  font-weight: 700 !important;
-  font-style: normal !important;
+  font-family: var(--body-font);
+  font-weight: 400;
+  margin: 0;
+  color: #374151;
 }
 
+/* Page title overlay */
+.page_title h1 {
+  color: #fff;
+}
+
+/* Sections */
+section {
+  position: relative;
+}
+
+/* History */
+.history .prose {
+  font-size: 1rem;
+  max-width: none;
+  margin-top: 0.5rem;
+}
+
+/* Owner speech */
+.owner_speech {
+  background: #f3f4f6;
+}
+.owner_speech h2 {
+  margin-top: 0;
+}
+.owner_speech .owner-image-wrapper {
+  border-radius: .75rem;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+.owner_speech img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+.owner_speech .quote {
+  position: relative;
+}
+.owner_speech .quote span {
+  display: block;
+}
+.owner_speech .quote::before,
+.owner_speech .quote::after {
+  font-size: 3rem;
+  color: var(--accent);
+  position: absolute;
+}
+.owner_speech .quote::before {
+  content: '“';
+  top: -10px;
+  left: -10px;
+}
+.owner_speech .quote::after {
+  content: '”';
+  bottom: -10px;
+  right: -10px;
+}
+
+/* Mission & Vision */
+.our_vision_mission img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: .75rem;
+  transition: transform var(--transition);
+}
+.our_vision_mission h2 {
+  margin-bottom: .5rem;
+}
+
+/* Team */
+.our_team {
+  background: #ffffff;
+}
+.team_card {
+  background: #fff;
+  border-radius: var(--card-radius);
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.team_card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 35px 60px -15px rgba(0,0,0,0.35);
+}
+.team_name {
+  font-size: 1.25rem;
+  margin-bottom: .25rem;
+  transition: color var(--transition);
+}
 .team_card:hover .team_name {
-  color: #1c7df8 !important;
+  color: var(--accent);
 }
+.team_designation {
+  margin-bottom: .75rem;
+}
+.team_description {
+  font-size: .9rem;
+  margin-bottom: 1rem;
+}
+
+/* Social icons on cards */
+.team_card a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: transform var(--transition);
+}
+.team_card a:hover {
+  transform: translateY(-2px);
+}
+.team_card a i {
+  font-size: 1rem;
+}
+
+/* Modal */
+[aria-modal="true"] {
+  z-index: 50;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+.modal-content {
+  position: relative;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  max-width: 100%;
+}
+.modal_team_iamge img,
 .team_image img {
-  transform-origin: center center;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  transition: ease-in-out 500ms;
+  border-radius: 50%;
+  transition: transform var(--transition);
 }
-.team_card:hover .team_image img {
-  transform: scale(1.1);
+.team_image {
+  margin-bottom: 1rem;
 }
-.modal_team_iamge img {
-  object-fit: cover;
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Accessibility focus */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.6);
+  outline-offset: 2px;
+}
+
+/* Responsive typography tweaks */
+@media (min-width: 768px) {
+  .history h2 {
+    font-size: 2.5rem;
+  }
+  .owner_speech h2 {
+    font-size: 2.25rem;
+  }
+  .our_vision_mission h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Utility */
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+/* Image hover scale for team and mission/vision - subtle */
+.team_card:hover .team_image img,
+.our_vision_mission img:hover {
+  transform: scale(1.03);
 }

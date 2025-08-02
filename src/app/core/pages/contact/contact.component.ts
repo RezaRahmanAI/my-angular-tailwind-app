@@ -1,84 +1,102 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  CUSTOM_ELEMENTS_SCHEMA,
-} from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-// import { HttpClient } from '@angular/common/http'; // Commented out
-// import { environment } from '../../environments/environment'; // Commented out
-// import { toast } from 'vue3-toastify'; // Commented out
-// import 'vue3-toastify/dist/index.css'; // Commented out
+import { RevealDirective } from '../../shared/directives/reveal.directive';
+
+
+interface ContactData {
+  subject: string;
+  propertyType?: string;
+  budget?: number;
+  timeline?: string;
+  name: string;
+  phone: string;
+  email: string;
+  message?: string;
+  visitDate?: string;
+}
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, RevealDirective],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ContactComponent implements OnInit {
-  @ViewChild('contactForm') contactForm!: ElementRef<HTMLFormElement>;
-
-  // baseUrl = environment.apiBaseUrl; // Commented out
-  baseUrl = 'https://dummy.com'; // Dummy base URL for image paths
-
-  contactData = {
-    name: '',
-    email: '',
-    phone: '',
+  contactData: ContactData = {
     subject: '',
+    propertyType: '',
+    budget: undefined,
+    timeline: '',
+    name: '',
+    phone: '',
+    email: '',
     message: '',
+    visitDate: '',
   };
 
-  ngOnInit(): void {
-    // No initialization needed for now
+  submitting = false;
+  submitted = false;
+  errorMessage = '';
+
+  ngOnInit(): void {}
+
+  isMapLoaded = false;
+
+  onMapLoad(): void {
+    this.isMapLoaded = true;
   }
 
-  // constructor(private http: HttpClient) {} // Commented out
-  constructor() {}
-
-  // Commenting out API and toast methods
-  /*
-  createData(): void {
-    const name = (document.getElementById('name') as HTMLInputElement).value;
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-    const phone = (document.getElementById('phone') as HTMLInputElement).value;
-    const subject = (document.getElementById('subject') as HTMLSelectElement).value;
-    const message = (document.getElementById('message') as HTMLTextAreaElement).value;
-
-    const obj2 = { name, email, phone, subject, message };
-    this.http.post(`${this.baseUrl}/api/website/createcontactus`, obj2, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-    }).subscribe({
-      next: (data) => this.showToatSuccess(data),
-      error: (err) => console.error('Error submitting contact:', err),
-    });
+  private validateEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  showToatSuccess(message: string): void {
-    toast.success(message, {
-      position: 'top-right',
-      duration: 5000,
-      dismissible: true,
-    });
+  private validatePhone(phone: string): boolean {
+    return /^[0-9+\-()\s]{7,20}$/.test(phone);
   }
-  */
 
-  createData(): void {
-    console.log('Form submitted with data:', this.contactData);
-    alert('Contact form submitted successfully! (Dummy response)');
-    this.contactData = {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    }; // Reset form
+  createData(form: NgForm): void {
+    if (this.submitting) return;
+    this.errorMessage = '';
+    if (form.invalid) {
+      this.errorMessage = 'Please complete required fields.';
+      return;
+    }
+    if (!this.validateEmail(this.contactData.email)) {
+      this.errorMessage = 'Invalid email address.';
+      return;
+    }
+    if (!this.validatePhone(this.contactData.phone)) {
+      this.errorMessage = 'Invalid phone number.';
+      return;
+    }
+    if (!this.contactData.subject) {
+      this.errorMessage = 'Please select purpose of contact.';
+      return;
+    }
+
+    this.submitting = true;
+
+    // Simulate API / replace with real POST
+    setTimeout(() => {
+      this.submitting = false;
+      this.submitted = true;
+      console.log('Lead captured:', this.contactData);
+      form.resetForm();
+      this.contactData = {
+        subject: '',
+        propertyType: '',
+        budget: undefined,
+        timeline: '',
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
+        visitDate: '',
+      };
+    }, 1000);
   }
 }

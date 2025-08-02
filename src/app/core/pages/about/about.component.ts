@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  CUSTOM_ELEMENTS_SCHEMA,
-} from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -13,11 +7,11 @@ interface TeamMember {
   id: number;
   name: string;
   designation: string;
-  image: string;
-  description: string;
-  facebook: string;
-  twiter: string;
-  linkthen: string;
+  image?: string;
+  description?: string;
+  facebook?: string;
+  twitter?: string;
+  linkedin?: string;
 }
 
 @Component({
@@ -43,66 +37,85 @@ interface TeamMember {
   ],
 })
 export class AboutComponent implements OnInit {
-  @ViewChild('modalRef') modalRef!: ElementRef<HTMLDivElement>;
+  baseUrl = 'https://dummy.com'; // replace with real env if available
 
-  baseUrl = 'https://dummy.com'; // Dummy base URL for image paths
-
-  state = {
+  state: {
+    about: {
+      history?: string;
+      ownerName?: string;
+      ownerDesignation?: string;
+      ownerSpeech?: string;
+      ownerImage?: string;
+      mission?: string;
+      missionImage?: string;
+      vision?: string;
+      visionImage?: string;
+    };
+    team: TeamMember[];
+    selectedTeamMember: TeamMember | null;
+  } = {
     about: {
       history:
         'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
       ownerName: 'John Smith',
       ownerDesignation: 'CEO & Founder',
-      ownerSpece:
+      ownerSpeech:
         'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
       ownerImage: '/images/employee/employee-1.jpg',
       mission:
         'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
-      messionImage: 'dummy-mission.jpg',
-      vission:
+      missionImage: '/images/employee/employee-1.jpg',
+      vision:
         'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
-      vissionImage: 'dummy-vision.jpg',
+      visionImage: '/images/employee/employee-1.jpg',
     },
     team: [
       {
         id: 1,
         name: 'Alice Johnson',
         designation: 'Project Manager',
-        image: 'dummy-team-1.jpg',
+        image: '/images/employee/employee-1.jpg',
         description:
           'Experienced in managing large-scale construction projects.',
         facebook: 'https://facebook.com/alice',
-        twiter: 'https://twitter.com/alice',
-        linkthen: 'https://linkedin.com/in/alice',
+        twitter: 'https://twitter.com/alice',
+        linkedin: 'https://linkedin.com/in/alice',
       },
       {
         id: 2,
         name: 'Bob Williams',
         designation: 'Architect',
-        image: 'dummy-team-2.jpg',
+        image: '/images/employee/employee-2.jpg',
         description: 'Specializes in modern architectural designs.',
         facebook: 'https://facebook.com/bob',
-        twiter: 'https://twitter.com/bob',
-        linkthen: 'https://linkedin.com/in/bob',
+        twitter: 'https://twitter.com/bob',
+        linkedin: 'https://linkedin.com/in/bob',
       },
     ],
-    selectedTeamMember: null as TeamMember | null,
+    selectedTeamMember: null,
   };
-  isModalVisible = false;
 
-  ngOnInit(): void {
-    // No API calls for now
-  }
+  isModalVisible = false;
 
   constructor() {}
 
+  ngOnInit(): void {
+    // placeholder for future API initialization
+  }
+
   onToggle(member: TeamMember | null = null): void {
-    console.log('Toggling modal with member:', member);
     if (member) {
-      this.state.selectedTeamMember = { ...member }; // Create a copy to avoid reference issues
+      this.state.selectedTeamMember = { ...member };
     } else {
       this.state.selectedTeamMember = null;
     }
     this.isModalVisible = !this.isModalVisible;
+  }
+
+  onImageError(event: Event, fallback = '/images/fallback.png'): void {
+    const img = event.target as HTMLImageElement;
+    if (img && img.src !== fallback) {
+      img.src = fallback;
+    }
   }
 }

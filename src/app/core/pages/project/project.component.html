@@ -1,116 +1,173 @@
-<div>
-  <div class="headering py-36 sm:py-48 md:py-64 lg:py-72 xl:py-[200px]"></div>
-  <div
-    class="page_title absolute top-1/4 sm:top-1/3 md:top-2/4 lg:top-2/3 xl:top-3/4 2xl:top-[40%] left-0"
-  >
-    <h1 class="text-2xl sm:text-3xl md:text-4xl text-slate-100 p-5">/ Projects</h1>
-  </div>
-  <div class="projects_search_bar py-8 bg-slate-50 px-2">
-    <div class="container mx-auto">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 items-end">
-        <div>
-          <form class="max-w-sm mx-auto">
-            <label
-              for="category"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Select Project Category</label
-            >
-            <select
-              #categorySelect
-              id="category"
-              name="category"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            >
-              <option selected value="all">Choose a category</option>
-              <option value="Ongoing">Ongoing</option>
-              <option value="Upcoming">Upcoming</option>
-              <option value="Completed">Completed</option>
-            </select>
-          </form>
-        </div>
-        <div>
-          <form class="max-w-sm mx-auto">
-            <label
-              for="type"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Select Project Type</label
-            >
-            <select
-              #typeSelect
-              id="type"
-              name="type"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            >
-              <option selected value="all">Choose a type</option>
-              <option value="Residential">Residential</option>
-              <option value="Commercial">Commercial</option>
-            </select>
-          </form>
-        </div>
-        <div class="hidden">
-          <form class="max-w-sm mx-auto">
-            <label
-              for="location"
-              class="block mb-2 text-sm font-medium text-gray-900"
-              >Select Location</label
-            >
-            <select
-              #locationSelect
-              id="location"
-              name="location"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            >
-              <option selected value="all">Choose location</option>
-              <option value="Dhaka">Dhaka</option>
-              <option value="Rajshahi">Rajshahi</option>
-              <option value="Chattagram">Chattagram</option>
-              <option value="Rangpur">Rangpur</option>
-            </select>
-          </form>
-        </div>
-        <div class="filter_btn">
-          <button
-            (click)="getProject()"
-            class="border-dashed border-2 border-gray-400 py-2 px-5 rounded-lg hover:bg-gray-400 hover:text-slate-100 duration-500 ease-in-out"
-          >
-            <i class="ri-filter-2-line"></i>
-            Filter
-          </button>
-        </div>
+<div class="relative overflow-hidden">
+  <!-- Hero / Title -->
+  <div class="headering relative">
+    <div class="page_title absolute inset-x-0 top-1/3 flex justify-center">
+      <div class="inline-flex items-baseline gap-2 bg-white/10 backdrop-blur rounded-2xl px-6 py-4 shadow-lg max-w-[90%] sm:max-w-2xl">
+        <span class="text-indigo-300 font-mono text-lg select-none">/</span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          Projects
+        </h1>
       </div>
     </div>
   </div>
 
-  <div class="project_section py-10 px-2">
-    <div class="container mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-        <div
-          *ngFor="let item of state.list"
-          class="project_card border rounded-2xl shadow-xl hover:-translate-y-2 hover:ring-1 hover:ring-offset-2 hover:ring-blue-500 duration-500 ease-in-out"
-        >
-          <a [routerLink]="'/projectdetails/' + item.id">
-            <div class="project_card_img rounded-t-2xl overflow-hidden">
-              <img
-                class="w-full h-[450px] md:h-[350px] lg:h-[380px] xl:h-[450px] rounded-t-2xl object-cover"
-                [src]="'/images/banner/banner-3.png'"
-                alt=""
-              />
-            </div>
-            <div class="project_card_details p-4 text-center">
-              <h1 class="text-2xl font-bold mb-3 duration-500 ease-in-out">
-                {{ item.name }}
-              </h1>
-              <p
-                class="font-semibold text-gray-500 flex items-center gap-2 justify-center"
-              >
-                <span>{{ item.category }}</span>
-                <span class="w-3 h-3 text-sm bg-gray-500 rounded-full"></span>
-                <span>{{ item.type }}</span>
-              </p>
-            </div>
-          </a>
+  <!-- Filter bar -->
+  <section class="projects_search_bar py-8 bg-gray-50 border-b">
+    <div class="lg:container mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+        <!-- Category -->
+        <div class="col-span-1">
+          <label for="category" class="block text-xs font-medium text-gray-700 mb-1">Project Category</label>
+          <select
+            #categorySelect
+            id="category"
+            name="category"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all" selected>All Categories</option>
+            <option value="Ongoing">Ongoing</option>
+            <option value="Upcoming">Upcoming</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
+        <!-- Type -->
+        <div class="col-span-1">
+          <label for="type" class="block text-xs font-medium text-gray-700 mb-1">Project Type</label>
+          <select
+            #typeSelect
+            id="type"
+            name="type"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all" selected>All Types</option>
+            <option value="Residential">Residential</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+
+        <!-- Location -->
+        <div class="col-span-1">
+          <label for="location" class="block text-xs font-medium text-gray-700 mb-1">Location</label>
+          <select
+            #locationSelect
+            id="location"
+            name="location"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all" selected>All Locations</option>
+            <option value="Rajshahi">Rajshahi</option>
+            <option value="Dhaka">Dhaka</option>
+            <option value="Chattagram">Chattagram</option>
+            <option value="Rangpur">Rangpur</option>
+          </select>
+        </div>
+
+        <!-- Keyword (optional) -->
+        <div class="col-span-1">
+          <label for="keyword" class="block text-xs font-medium text-gray-700 mb-1">Search</label>
+          <input
+            id="keyword"
+            name="keyword"
+            type="text"
+            placeholder="Project name or area"
+            #keywordInput
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- Actions -->
+        <div class="col-span-1 flex gap-2">
+          <div class="flex-1">
+            <button
+              (click)="getProject()"
+              aria-label="Apply filters"
+              class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-semibold rounded-lg px-4 py-2 hover:scale-[1.02] transition"
+            >
+              <i class="ri-filter-2-line"></i>
+              Filter
+            </button>
+          </div>
+          <div class="flex-1">
+            <button
+              (click)="resetFilters()"
+              aria-label="Reset filters"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium hover:bg-gray-100 transition"
+            >
+              Reset
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Projects grid -->
+  <section class="project_section py-12 px-4">
+    <div class="lg:container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          *ngFor="let item of state.list"
+          class="project_card group relative overflow-hidden rounded-2xl shadow-lg bg-white hover:shadow-2xl transition transform"
+        >
+          <div class="absolute top-4 left-4 z-10">
+            <span
+              class="px-3 py-1 text-xs font-semibold rounded-full uppercase tracking-wide"
+              [ngClass]="{
+                'bg-green-100 text-green-800': item.category === 'Completed',
+                'bg-blue-100 text-blue-800': item.category === 'Ongoing',
+                'bg-yellow-100 text-yellow-800': item.category === 'Upcoming'
+              }"
+            >
+              {{ item.category || 'N/A' }}
+            </span>
+          </div>
+
+          <a [routerLink]="['/projectdetails', item.id]" class="block">
+            <div class="project_card_img overflow-hidden rounded-t-2xl relative">
+              <img
+                class="w-full h-[320px] object-cover transition-transform duration-700 group-hover:scale-105"
+                [attr.src]="'/images/banner/banner-3.png'"
+                [attr.alt]="item.name || 'Project image'"
+                loading="lazy"
+                (error)="onImageError($event)"
+              />
+              <div class="absolute bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 shadow">
+                <span>{{ item.type || '—' }}</span>
+              </div>
+            </div>
+            <div class="project_card_details p-5 text-center">
+              <h2 class="text-xl font-bold mb-1 group-hover:text-indigo-600 transition">
+                {{ item.name }}
+              </h2>
+              <div class="text-sm text-gray-500 flex justify-center items-center gap-2">
+                <span>{{ item.location || 'Unknown' }}</span>
+                <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                <span>{{ item.type }}</span>
+              </div>
+              <div class="mt-3 flex justify-center gap-3">
+                <button
+                  class="text-xs bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition"
+                  [attr.aria-label]="'View details of ' + item.name "
+                >
+                  View Details
+                </button>
+                <button
+                  *ngIf="item.canSchedule"
+                  class="text-xs border border-indigo-500 text-indigo-500 px-4 py-2 rounded-full hover:bg-indigo-50 transition"
+                  [attr.aria-label]="'Schedule visit for ' + item.name"
+                >
+                  Schedule Visit
+                </button>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div *ngIf="!state.list.length" class="col-span-full text-center py-16 text-gray-500">
+          No projects match your filters. Try adjusting criteria.
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

@@ -1,279 +1,280 @@
-<div>
-  <div class="headering py-36 sm:py-48 md:py-64 lg:py-72 xl:py-[200px]"></div>
-  <div
-    class="page_title absolute top-1/4 sm:top-1/3 md:top-2/4 lg:top-2/3 xl:top-3/4 2xl:top-[40%] left-0"
-  >
-    <h1 class="text-2xl sm:text-3xl md:text-4xl text-slate-100 p-5">
-      / About US
-    </h1>
-  </div>
-
-  <div class="history py-14 px-2">
-    <div class="container mx-auto">
-      <h1
-        class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-800 mb-5 lg:mb-8 xl:mb-16"
-      >
-        Our History
-      </h1>
-      <div class="w-full">
-        <p *ngIf="state.about?.history">{{ state.about.history }}</p>
-        <p *ngIf="!state.about?.history" class="text-gray-500">No history available.</p>
+<div class="relative overflow-hidden">
+  <!-- Hero / Title -->
+  <div class="headering py-[180px] sm:py-[220px] relative">
+    <div class="page_title absolute inset-x-0 top-1/3 flex justify-center">
+      <div class="inline-flex items-baseline gap-2 bg-black/30 backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg max-w-[90%] sm:max-w-2xl">
+        <span class="text-indigo-300 font-mono text-lg select-none">/</span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+          About Us
+        </h1>
       </div>
     </div>
   </div>
 
-  <div class="owner_speech py-14 px-2">
-    <div class="container mx-auto">
-      <h1
-        class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-800 mb-5 md:mb-16"
-      >
-        Owner Speech
-      </h1>
-      <div class="sm:flex items-center gap-5">
-        <div
-          class="owner_image w-full sm:w-[50%] md:w-[40%] lg:w-[35%] xl:w-[30%]"
-        >
-          <div>
-            <img
-              *ngIf="state.about?.ownerImage"
-              class="h-[250px] md:h-[300px] lg:h-[350px] xl:h-[400px] 2xl:h-[500px] rounded-lg"
-              [src]="'/images/banner/banner-3.png'"
-              alt=""
-            />
-          </div>
+  <!-- History -->
+  <section class="history py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl lg:text-6xl font-bold text-slate-800 mb-6">Our History</h2>
+      <div class="prose max-w-none text-gray-700">
+        <p *ngIf="state.about?.history; else noHistory">{{ state.about.history }}</p>
+        <ng-template #noHistory>
+          <p class="text-gray-500">No history available.</p>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+
+  <!-- Owner Speech -->
+  <section class="owner_speech py-16 px-4 bg-gray-50">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 items-start">
+      <div class="flex-shrink-0 w-full lg:w-1/3">
+        <div class="overflow-hidden rounded-xl shadow-md">
+          <img
+            *ngIf="state.about?.ownerImage; else ownerPlaceholder"
+            [src]="state.about.ownerImage"
+            alt="Owner image"
+            class="w-full object-cover aspect-[4/5]"
+            loading="lazy"
+            (error)="onImageError($event)"
+          />
+          <ng-template #ownerPlaceholder>
+            <div class="w-full aspect-[4/5] bg-gray-200 flex items-center justify-center text-gray-500">
+              No image
+            </div>
+          </ng-template>
         </div>
-        <div
-          class="owner_text w-full sm:w-[50%] md:w-[60%] lg:w-[65%] xl:w-[70%]"
-        >
-          <div class="mb-5">
-            <h1
-              class="text-xl md:text-2xl text-slate-950"
-              *ngIf="state.about?.ownerName"
-            >
-              {{ state.about.ownerName }}
-            </h1>
-            <p
-              class="text-md md:text-lg text-slate-950 font-semibold"
-              *ngIf="state.about?.ownerDesignation"
-            >
-              {{ state.about.ownerDesignation }}
-            </p>
-          </div>
-          <p>
-            <i class="ri-double-quotes-l sm:me-1"></i>
-            <span *ngIf="state.about?.ownerSpece">{{ state.about.ownerSpece }}</span>
-            <i class="ri-double-quotes-r ms-1"></i>
+      </div>
+      <div class="flex-1">
+        <h2 class="text-4xl font-bold text-slate-800 mb-2">Owner’s Message</h2>
+        <div class="mb-4">
+          <h3 *ngIf="state.about?.ownerName" class="text-2xl font-semibold text-indigo-600">
+            {{ state.about.ownerName }}
+          </h3>
+          <p *ngIf="state.about?.ownerDesignation" class="text-sm font-medium text-gray-500">
+            {{ state.about.ownerDesignation }}
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="our_vission_mission py-14 px-2">
-    <div class="container mx-auto">
-      <div class="our_mission md:flex items-center gap-16 mb-10">
-        <div class="w-full md:w-[50%] lg:w-[45%] xl:w-[40%]">
-          <div>
-            <img
-              *ngIf="state.about?.messionImage"
-              class="rounded-xl h-[200px] sm:h-[300px] w-full mb-5 md:mb-0"
-              [src]="'/images/banner/banner-3.png'"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="w-full sm:w-[50%] lg:w-[55%] xl:w-[60%]">
-          <h1 class="text-2xl text-slate-950 mb-5 lg:mb-7 xl:mb-10">
-            Mission
-          </h1>
-          <p *ngIf="state.about?.mission">{{ state.about.mission }}</p>
-          <p *ngIf="!state.about?.mission" class="text-gray-500">No mission available.</p>
-        </div>
-      </div>
-      <div class="our_vission md:flex items-center gap-16">
-        <div class="w-full md:w-[50%] lg:w-[55%] xl:w-[60%] mb-5 md:mb-0">
-          <h1 class="text-2xl text-slate-950 mb-5 lg:mb-7 xl:mb-10">
-            Vission
-          </h1>
-          <p *ngIf="state.about?.vission">{{ state.about.vission }}</p>
-          <p *ngIf="!state.about?.vission" class="text-gray-500">No vision available.</p>
-        </div>
-        <div class="w-full md:w-[50%] lg:w-[45%] xl:w-[40%]">
-          <div>
-            <img
-              *ngIf="state.about?.vissionImage"
-              class="rounded-xl h-[200px] sm:h-[300px] w-full"
-              [src]="'/images/banner/banner-3.png'"
-              alt=""
-            />
+        <div class="relative text-lg leading-relaxed text-gray-800">
+          <div class="flex items-start gap-2 mb-4">
+            <span class="text-4xl text-indigo-500" aria-hidden="true">“</span>
+            <div class="flex-1">
+              <p *ngIf="state.about?.ownerSpeech; else noSpeech">
+                {{ state.about.ownerSpeech }}
+              </p>
+              <ng-template #noSpeech>
+                <p class="text-gray-500">Owner message is not available at the moment.</p>
+              </ng-template>
+            </div>
+            <span class="text-4xl text-indigo-500" aria-hidden="true">”</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="our_team py-14 bg-slate-100 px-2">
-    <div class="container mx-auto">
-      <h1
-        class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-800 mb-16"
-      >
-        Our Team
-      </h1>
+  <!-- Mission & Vision -->
+  <section class="our_vision_mission py-16 px-4">
+    <div class="max-w-6xl mx-auto space-y-16">
+      <!-- Mission -->
+      <div class="flex flex-col lg:flex-row gap-10 items-center">
+        <div class="lg:w-1/2">
+          <div class="overflow-hidden rounded-xl shadow">
+            <img
+              *ngIf="state.about?.missionImage; else missionPlaceholder"
+              [src]="state.about.missionImage"
+              alt="Mission image"
+              class="w-full object-cover h-full"
+              loading="lazy"
+              (error)="onImageError($event)"
+            />
+            <ng-template #missionPlaceholder>
+              <div class="w-full h-60 bg-gray-200 flex items-center justify-center text-gray-500">
+                No image
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <div class="lg:w-1/2">
+          <h2 class="text-3xl font-bold text-slate-800 mb-3">Mission</h2>
+          <div class="prose text-gray-700">
+            <p *ngIf="state.about?.mission; else noMission">{{ state.about.mission }}</p>
+            <ng-template #noMission>
+              <p class="text-gray-500">No mission available.</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
 
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-3 md:gap-8"
-      >
+      <!-- Vision -->
+      <div class="flex flex-col lg:flex-row-reverse gap-10 items-center">
+        <div class="lg:w-1/2">
+          <div class="overflow-hidden rounded-xl shadow">
+            <img
+              *ngIf="state.about?.visionImage; else visionPlaceholder"
+              [src]="state.about.visionImage"
+              alt="Vision image"
+              class="w-full object-cover h-full"
+              loading="lazy"
+              (error)="onImageError($event)"
+            />
+            <ng-template #visionPlaceholder>
+              <div class="w-full h-60 bg-gray-200 flex items-center justify-center text-gray-500">
+                No image
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <div class="lg:w-1/2">
+          <h2 class="text-3xl font-bold text-slate-800 mb-3">Vision</h2>
+          <div class="prose text-gray-700">
+            <p *ngIf="state.about?.vision; else noVision">{{ state.about.vision }}</p>
+            <ng-template #noVision>
+              <p class="text-gray-500">No vision available.</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="our_team py-16 bg-white px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-slate-800 mb-12 text-center">Our Team</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
           *ngFor="let teamitem of state.team"
           (click)="onToggle(teamitem)"
-          class="team_card p-5 sm:p-10 border border-slate-100 rounded-3xl shadow-xl bg-white hover:-translate-y-2 duration-500 ease-in-out cursor-pointer hover:border-blue-500"
+          class="team_card group relative p-6 border rounded-2xl shadow-md bg-white cursor-pointer transition-transform hover:-translate-y-1"
         >
-          <div
-            class="team_image mb-8 overflow-hidden rounded-full w-44 sm:w-32 md:w-36 xl:w-44 h-44 sm:h-32 md:h-36 xl:h-44 mx-auto"
-          >
-            <img
-              class="w-44 sm:w-32 md:w-36 xl:w-44 h-44 sm:h-32 md:h-36 xl:h-44"
-              [src]="'/images/banner/banner-3.png'"
-              alt=""
-            />
-          </div>
-          <div class="team_text">
-            <div class="team_title text-center mb-6 sm:mb-3 md:mb-6">
-              <h2
-                class="team_name text-2xl sm:text-xl md:text-2xl mb- text-slate-800 font-bold duration-500"
-              >
+          <div class="flex flex-col items-center">
+            <div class="team_image mb-6 overflow-hidden rounded-full w-36 h-36">
+              <img
+                [src]=" teamitem.image "
+                alt="{{ teamitem.name }}"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                (error)="onImageError($event)"
+              />
+            </div>
+            <div class="text-center">
+              <h3 class="team_name text-xl font-semibold text-slate-800 mb-1">
                 {{ teamitem.name }}
-              </h2>
-              <span
-                class="team_designation font-semibold text-lg sm:text-md md:text-lg text-blue-500"
-              >
-                {{ teamitem.designation }}</span
-              >
-            </div>
-            <div
-              class="team_description text-center text-md sm:text-sm mb-5 md:mb-6 xl:mb-14"
-            >
-              <p>{{ teamitem.description }}</p>
-            </div>
-            <div
-              class="team_social_media flex items-center justify-center gap-5"
-            >
-              <a
-                [href]="teamitem.facebook"
-                class="hover:-translate-y-2 duration-500 ease-in-out"
-                ><span
-                  ><i
-                    class="ri-facebook-fill text-2xl sm:text-xl xl:text-2xl text-slate-50 bg-blue-500 p-3 sm:p-2 xl:p-3 rounded-full"
-                  ></i></span
-              ></a>
-
-              <a
-                [href]="teamitem.twiter"
-                class="hover:-translate-y-2 duration-500 ease-in-out"
-              >
-                <span
-                  ><i
-                    class="ri-twitter-x-fill text-2xl sm:text-xl xl:text-2xl text-slate-50 bg-slate-950 p-3 sm:p-2 xl:p-3 rounded-full"
-                  ></i
-                ></span>
-              </a>
-
-              <a
-                [href]="teamitem.linkthen"
-                class="hover:-translate-y-2 duration-500 ease-in-out"
-              >
-                <span
-                  ><i
-                    class="ri-linkedin-fill text-2xl sm:text-xl xl:text-2xl text-slate-50 bg-blue-700 p-3 sm:p-2 xl:p-3 rounded-full"
-                  ></i></span
-              ></a>
+              </h3>
+              <p class="team_designation text-indigo-600 font-medium mb-3">
+                {{ teamitem.designation }}
+              </p>
+              <p class="team_description text-sm text-gray-600 mb-4">
+                {{ teamitem.description }}
+              </p>
+              <div class="flex justify-center gap-4">
+                <a
+                  *ngIf="teamitem.facebook"
+                  [href]="teamitem.facebook"
+                  [attr.aria-label]="'Facebook of '+ teamitem.name "
+                  target="_blank"
+                  class="text-white bg-blue-500 p-3 rounded-full text-lg hover:shadow-lg transition"
+                >
+                  <i class="ri-facebook-fill"></i>
+                </a>
+                <a
+                  *ngIf="teamitem.twitter"
+                  [href]="teamitem.twitter"
+                  [attr.aria-label]="'Twitter of '+ teamitem.name "
+                  target="_blank"
+                  class="text-white bg-slate-900 p-3 rounded-full text-lg hover:shadow-lg transition"
+                >
+                  <i class="ri-twitter-x-fill"></i>
+                </a>
+                <a
+                  *ngIf="teamitem.linkedin"
+                  [href]="teamitem.linkedin"
+                  [attr.aria-label]="'LinkedIn of '+ teamitem.name "
+                  target="_blank"
+                  class="text-white bg-blue-700 p-3 rounded-full text-lg hover:shadow-lg transition"
+                >
+                  <i class="ri-linkedin-fill"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- Modal -->
   <div
     *ngIf="isModalVisible"
-    class="fixed inset-y-0 inset-x-0 flex items-center justify-center z-50"
+    class="fixed inset-0 flex items-center justify-center z-50 px-4"
+    aria-modal="true"
+    role="dialog"
     [@fadeScale]
   >
-    <div
-      (click)="onToggle()"
-      class="absolute inset-0 bg-black opacity-70 z-0"
-    ></div>
-    <div
-      class="w-[350px] sm:w-full max-w-4xl p-3 relative mx-auto my-auto rounded shadow-lg bg-white"
-    >
-      <div class="text-end space-x-4 md:block">
+    <div class="absolute inset-0 bg-black/70" (click)="onToggle()"></div>
+    <div class="relative bg-white rounded-xl shadow-xl max-w-4xl w-full overflow-hidden">
+      <div class="flex justify-end p-4">
         <button
           (click)="onToggle()"
-          class="mb-2 md:mb-0 bg-blue-500 border border-blue-500 px-2.5 py-1 text-sm shadow-sm font-medium tracking-wider text-white rounded hover:shadow-lg hover:bg-blue-600"
+          aria-label="Close modal"
+          class="bg-transparent text-gray-700 hover:text-gray-900 p-2 rounded-full"
         >
-          <i class="ri-close-fill text-lg"></i>
+          <i class="ri-close-fill text-2xl"></i>
         </button>
       </div>
-      <div class="p-5 sm:flex items-top gap-5">
-        <div class="modal_team_iamge w-full sm:w-[35%] text-center">
+      <div class="p-6 sm:flex gap-8">
+        <div class="flex-shrink-0 w-full sm:w-1/3 text-center">
           <img
-            *ngIf="state.selectedTeamMember?.image"
-            class="w-[200px] sm:w-full h-[220px] sm:h-full mx-auto"
-            [src]="'/images/banner/banner-3.png'"
-            alt=""
+            *ngIf="state.selectedTeamMember?.image; else noMemberImg"
+            [src]="state.selectedTeamMember?.image"
+            alt="{{ state.selectedTeamMember?.name }}"
+            class="w-40 h-40 rounded-full object-cover mx-auto"
+            loading="lazy"
+            (error)="onImageError($event)"
           />
+          <ng-template #noMemberImg>
+            <div class="w-40 h-40 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+              No image
+            </div>
+          </ng-template>
         </div>
-        <div class="modal_team_details w-[65%] px-6">
-          <div class="mb-6">
-            <h2
-              *ngIf="state.selectedTeamMember?.name"
-              class="name text-2xl font-bold mb-2"
-            >
-              {{ state.selectedTeamMember?.name }}
-            </h2>
-            <span
-              class="font-semibold text-blue-500"
-              *ngIf="state.selectedTeamMember?.designation"
-            >
-              {{ state.selectedTeamMember?.designation }}
-            </span>
-          </div>
-          <p
-            *ngIf="state.selectedTeamMember?.description"
-            class="mb-6"
-          >
+        <div class="flex-1">
+          <h3 *ngIf="state.selectedTeamMember?.name" class="text-2xl font-bold mb-1">
+            {{ state.selectedTeamMember?.name }}
+          </h3>
+          <p *ngIf="state.selectedTeamMember?.designation" class="text-indigo-600 font-medium mb-3">
+            {{ state.selectedTeamMember?.designation }}
+          </p>
+          <p *ngIf="state.selectedTeamMember?.description" class="text-gray-700 mb-5">
             {{ state.selectedTeamMember?.description }}
           </p>
-          <div class="team_social_media flex items-center gap-5">
+          <div class="flex gap-4">
             <a
+              *ngIf="state.selectedTeamMember?.facebook"
               [href]="state.selectedTeamMember?.facebook"
-              class="hover:-translate-y-2 duration-500 ease-in-out"
+              target="_blank"
+              aria-label="Facebook"
+              class="text-white bg-blue-500 p-3 rounded-full"
             >
-              <span
-                ><i
-                  class="ri-facebook-fill text-xl text-slate-50 bg-blue-500 p-3 rounded-full"
-                ></i
-              ></span>
+              <i class="ri-facebook-fill"></i>
             </a>
             <a
-              [href]="state.selectedTeamMember?.twiter"
-              class="hover:-translate-y-2 duration-500 ease-in-out"
+              *ngIf="state.selectedTeamMember?.twitter"
+              [href]="state.selectedTeamMember?.twitter"
+              target="_blank"
+              aria-label="Twitter"
+              class="text-white bg-slate-900 p-3 rounded-full"
             >
-              <span
-                ><i
-                  class="ri-twitter-x-fill text-xl text-slate-50 bg-slate-950 p-3 rounded-full"
-                ></i
-              ></span>
+              <i class="ri-twitter-x-fill"></i>
             </a>
             <a
-              [href]="state.selectedTeamMember?.linkthen"
-              class="hover:-translate-y-2 duration-500 ease-in-out"
+              *ngIf="state.selectedTeamMember?.linkedin"
+              [href]="state.selectedTeamMember?.linkedin"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="text-white bg-blue-700 p-3 rounded-full"
             >
-              <span
-                ><i
-                  class="ri-linkedin-fill text-xl text-slate-50 bg-blue-700 p-3 rounded-full"
-                ></i
-              ></span>
+              <i class="ri-linkedin-fill"></i>
             </a>
           </div>
         </div>

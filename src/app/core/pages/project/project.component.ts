@@ -7,8 +7,16 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-// import { HttpClient } from '@angular/common/http'; // Commented out
-// import { environment } from '../../environments/environment'; // Commented out
+
+interface ProjectItem {
+  id: number | string;
+  name: string;
+  category: string;
+  type: string;
+  thumbnail: string;
+  location: string;
+  canSchedule?: boolean;
+}
 
 @Component({
   selector: 'app-projects',
@@ -23,75 +31,74 @@ export class ProjectsComponent implements OnInit {
   @ViewChild('typeSelect') typeSelect!: ElementRef<HTMLSelectElement>;
   @ViewChild('locationSelect') locationSelect!: ElementRef<HTMLSelectElement>;
 
-  // baseUrl = environment.apiBaseUrl; // Commented out
-  baseUrl = 'https://dummy.com'; // Dummy base URL for image paths
+  baseUrl = 'https://dummy.com';
+
+  originalList: ProjectItem[] = [
+    {
+      id: 1,
+      name: 'Project One',
+      category: 'Ongoing',
+      type: 'Residential',
+      thumbnail: 'dummy-project-1.jpg',
+      location: 'Dhaka',
+      canSchedule: true,
+    },
+    {
+      id: 2,
+      name: 'Project Two',
+      category: 'Completed',
+      type: 'Commercial',
+      thumbnail: 'dummy-project-2.jpg',
+      location: 'Chattagram',
+      canSchedule: false,
+    },
+    {
+      id: 3,
+      name: 'Project Three',
+      category: 'Upcoming',
+      type: 'Residential',
+      thumbnail: 'dummy-project-3.jpg',
+      location: 'Rajshahi',
+      canSchedule: true,
+    },
+  ];
 
   state = {
-    list: [
-      {
-        id: 1,
-        name: 'Project One',
-        category: 'Ongoing',
-        type: 'Residential',
-        thumbnail: 'dummy-project-1.jpg',
-        location: 'Dhaka',
-      },
-      {
-        id: 2,
-        name: 'Project Two',
-        category: 'Completed',
-        type: 'Commercial',
-        thumbnail: 'dummy-project-2.jpg',
-        location: 'Chattagram',
-      },
-      {
-        id: 3,
-        name: 'Project Three',
-        category: 'Upcoming',
-        type: 'Residential',
-        thumbnail: 'dummy-project-3.jpg',
-        location: 'Rajshahi',
-      },
-    ],
+    list: [] as ProjectItem[],
   };
 
   ngOnInit(): void {
-    // Commenting out API calls
-    // this.getProject();
+    // initial full list
+    this.state.list = [...this.originalList];
   }
-
-  // constructor(private http: HttpClient) {} // Commented out
-  constructor() {}
-
-  // Commenting out API call methods
-  /*
-  getProject(): void {
-    const category = (document.getElementById('category') as HTMLSelectElement).value;
-    const type = (document.getElementById('type') as HTMLSelectElement).value;
-    const location = (document.getElementById('location') as HTMLSelectElement).value;
-    this.http.get<any>(`${this.baseUrl}/api/website/getprojects?category=${category}&type=${type}&location=${location}`, { method: 'GET' }).subscribe({
-      next: (data) => {
-        this.state.list = data;
-        console.log(this.state.list);
-      },
-      error: (err) => console.error('Error fetching projects:', err),
-    });
-  }
-  */
 
   getProject(): void {
     const category = this.categorySelect.nativeElement.value;
     const type = this.typeSelect.nativeElement.value;
     const location = this.locationSelect.nativeElement.value;
 
-    // Simulate filtering with dummy data (no API call)
-    let filteredList = [...this.state.list];
-    if (category !== 'all')
+    let filteredList = [...this.originalList];
+    if (category && category !== 'all') {
       filteredList = filteredList.filter((item) => item.category === category);
-    if (type !== 'all')
+    }
+    if (type && type !== 'all') {
       filteredList = filteredList.filter((item) => item.type === type);
-    if (location !== 'all')
+    }
+    if (location && location !== 'all') {
       filteredList = filteredList.filter((item) => item.location === location);
+    }
     this.state.list = filteredList;
+  }
+
+  resetFilters(): void {
+    if (this.categorySelect) this.categorySelect.nativeElement.value = 'all';
+    if (this.typeSelect) this.typeSelect.nativeElement.value = 'all';
+    if (this.locationSelect) this.locationSelect.nativeElement.value = 'all';
+    this.state.list = [...this.originalList];
+  }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = '/images/fallback.png';
   }
 }
