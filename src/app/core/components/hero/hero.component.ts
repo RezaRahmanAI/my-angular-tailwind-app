@@ -1,118 +1,79 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  HostListener,
-  NgZone,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-interface Slide {
-  image: string;
-  title: string;
-  subtitle?: string;
-}
+import { HttpClientModule } from '@angular/common/http';
+import { HeroSectionService } from '../../services/hero-section.service';
+import { Slide } from '../../models/model';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css'],
+  providers: [HeroSectionService],
 })
 export class HeroComponent implements OnInit, OnDestroy {
-  //
-
-  slides: Slide[] = [
-    {
-      image:
-        'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-      title: 'Luxury Homes Await You',
-      subtitle: 'Find quality living with trust and vision.',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-      title: 'Modern Living Spaces',
-      subtitle: 'Explore contemporary designs and comfort.',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-      title: 'Premium Real Estate Solutions',
-      subtitle: 'Your gateway to exceptional properties.',
-    },
-    {
-      image:
-        'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-      title: 'Your Dream Property Awaits',
-      subtitle: 'Connecting you with your ideal home.',
-    },
-  ];
-
+  slides: Slide[] = [];
   currentSlideIndex = 0;
-  private slideInterval: ReturnType<typeof setInterval> | null = null;
-  private isPaused = false;
+  timeRunning = 3000;
+  timeAutoNext = 7000;
+  runTimeOut: any;
+  runNextAuto: any;
 
-  ngOnInit() {
-    this.startSlideshow();
+  constructor(private heroSectionService: HeroSectionService) {}
+
+  ngOnInit(): void {
+    this.heroSectionService.getSlides().subscribe((slides) => {
+      this.slides = slides;
+      this.startAutoSlide();
+    });
   }
 
-  ngOnDestroy() {
-    this.clear();
+  ngOnDestroy(): void {
+    this.clearTimers();
   }
 
-  startSlideshow() {
-    this.clear();
-    this.slideInterval = setInterval(() => {
-      if (!this.isPaused) this.nextSlide();
-    }, 4000);
+  showSlider(type: 'next' | 'prev'): void {
+    this.clearTimers();
+
+    if (type === 'next') {
+      this.currentSlideIndex =
+        (this.currentSlideIndex + 1) % this.slides.length;
+    } else {
+      this.currentSlideIndex =
+        (this.currentSlideIndex - 1 + this.slides.length) % this.slides.length;
+    }
+
+    this.runTimeOut = setTimeout(() => {
+      document.querySelector('.carousel')?.classList.remove('next', 'prev');
+    }, this.timeRunning);
+
+    document.querySelector('.carousel')?.classList.add(type);
+    this.startAutoSlide();
   }
 
-  clear() {
-    if (this.slideInterval) {
-      clearInterval(this.slideInterval);
-      this.slideInterval = null;
+  goToSlide(index: number): void {
+    this.clearTimers();
+    this.currentSlideIndex = index;
+    document.querySelector('.carousel')?.classList.add('next');
+    this.runTimeOut = setTimeout(() => {
+      document.querySelector('.carousel')?.classList.remove('next', 'prev');
+    }, this.timeRunning);
+    this.startAutoSlide();
+  }
+
+  private startAutoSlide(): void {
+    this.runNextAuto = setTimeout(() => {
+      this.showSlider('next');
+    }, this.timeAutoNext);
+  }
+
+  private clearTimers(): void {
+    if (this.runTimeOut) {
+      clearTimeout(this.runTimeOut);
+    }
+    if (this.runNextAuto) {
+      clearTimeout(this.runNextAuto);
     }
   }
-
-  pause() {
-    this.isPaused = true;
-  }
-
-  resume() {
-    this.isPaused = false;
-  }
-
-  nextSlide() {
-    this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
-  }
-
-  goToSlide(index: number) {
-    if (index === this.currentSlideIndex) return;
-    this.currentSlideIndex = index;
-  }
 }
-
-// slides: Slide[] = [
-//   {
-//     image:
-//       'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-//     title: 'Luxury Homes Await You',
-//   },
-//   {
-//     image:
-//       'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-//     title: 'Modern Living Spaces',
-//   },
-//   {
-//     image:
-//       'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-//     title: 'Premium Real Estate Solutions',
-//   },
-//   {
-//     image:
-//       'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-//     title: 'Your Dream Property Awaits',
-//   },
-// ];

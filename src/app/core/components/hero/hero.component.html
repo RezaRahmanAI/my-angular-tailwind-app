@@ -1,62 +1,31 @@
-<section class="hero" aria-label="Homepage hero slideshow">
-  <div class="hero-slider" (mouseenter)="pause()" (mouseleave)="resume()">
-    <div
-      class="slide"
-      *ngFor="let slide of slides; let i = index"
-      [class.active]="i === currentSlideIndex"
-      [attr.aria-hidden]="i === currentSlideIndex ? 'false' : 'true'"
-      [style.background-image]="'url(' + slide.image + ')'"
-      role="group"
-      [attr.aria-roledescription]="'slide ' + (i + 1) + ' of ' + slides.length"
-    >
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <h1 class="slide-title" [class.animate]="i === currentSlideIndex">
-          {{ slide.title }}
-        </h1>
-        <p class="slide-sub">
-          {{ slide.subtitle }}
-        </p>
-        <div class="hero-ctas">
-          <a routerLink="/projects" class="btn-modern btn-primary">
-            Browse Projects
-            <span class="icon-arrow">→</span>
-          </a>
-          <a routerLink="/contact" class="btn-modern btn-secondary">
-            Get in Touch
-            <span class="underline-expand"></span>
-          </a>
+<div class="carousel">
+  <div class="list">
+    <div class="item" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlideIndex">
+      <img [src]="slide.image" [alt]="slide.alt" loading="lazy">
+      <div class="content">
+        <div class="author">{{ slide.author }}</div>
+        <div class="title">{{ slide.title }}</div>
+        <div class="topic">{{ slide.topic }}</div>
+        <div class="des">{{ slide.description }}</div>
+        <div class="buttons">
+          <button aria-label="See more">SEE MORE</button>
+          <button aria-label="Subscribe">SUBSCRIBE</button>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Slide Indicators -->
-  <div class="slide-indicators" role="tablist" aria-label="Slide navigation">
-    <button
-      *ngFor="let slide of slides; let i = index"
-      class="indicator"
-      [class.active]="i === currentSlideIndex"
-      (click)="goToSlide(i)"
-      [attr.aria-label]="'Go to slide ' + (i + 1)"
-      [attr.aria-selected]="i === currentSlideIndex"
-      role="tab"
-    ></button>
+  <div class="thumbnail">
+    <div class="item" *ngFor="let slide of slides; let i = index" (click)="goToSlide(i)">
+      <img [src]="slide.image" [alt]="slide.alt + ' thumbnail'" loading="lazy">
+      <div class="content">
+        <div class="title">{{ slide.thumbnailTitle }}</div>
+        <div class="description">{{ slide.thumbnailDescription }}</div>
+      </div>
+    </div>
   </div>
-
-  <!-- Social Media Icons -->
-  <div class="social-media" aria-label="Social media links">
-    <a href="#" class="social-icon" title="Facebook" aria-label="Facebook">
-      <i class="ri-facebook-circle-line"></i>
-    </a>
-    <a href="#" class="social-icon" title="Instagram" aria-label="Instagram">
-      <i class="ri-instagram-line"></i>
-    </a>
-    <a href="#" class="social-icon" title="Twitter" aria-label="Twitter">
-      <i class="ri-twitter-x-fill"></i>
-    </a>
-    <a href="#" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
-      <i class="ri-linkedin-box-fill"></i>
-    </a>
+  <div class="arrows">
+    <button id="prev" (click)="showSlider('prev')" aria-label="Previous slide">&lt;</button>
+    <button id="next" (click)="showSlider('next')" aria-label="Next slide">&gt;</button>
   </div>
-</section>
+  <div class="time"></div>
+</div>

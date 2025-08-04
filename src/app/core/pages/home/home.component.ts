@@ -17,11 +17,12 @@ import { ProjectSliderComponent } from '../../components/project-slider/project-
 import { HeroComponent } from '../../components/hero/hero.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { ProjectExploreComponent } from "../../components/project-explore/project-explore.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeroComponent, FooterComponent],
+  imports: [CommonModule, RouterModule, HeroComponent, FooterComponent, ProjectExploreComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Allows swiper-container and swiper-slide
