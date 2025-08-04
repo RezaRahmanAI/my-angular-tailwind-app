@@ -1,59 +1,33 @@
 
 <app-hero />
-<app-project-explore />
-
-  <!-- Vision Banner Section -->
-  <div class="vision_banner mb-14 py-20 md:py-28 xl:py-[270px] md:px-2 lg:px-5 lg:py-36">
-    <div class="container mx-auto relative">
-      <h1 class="text-4xl lg:text-6xl text-white font-semibold mb-8 text-center md:text-left">
-        <span class="mb-5">A Vision For</span><br /><span class="md:ms-16">Luxury Living</span>
-      </h1>
-      <p class="lg:ms-40 text-slate-50 text-lg text-center md:text-left">
-        Founded in 1999, Samar Properties has become a pioneer in residential, commercial and shopping mall development, as well as, land subdivision development. With its headquarters now located in Dhaka, Samar has grown rapidly in stature due to its pioneering, innovative and sustainable approach to real estate development.
-      </p>
-      <a routerLink="/About" class="py-11 lg:py-12 xl:py-16 px-4 lg:px-3 xl:px-6 font-semibold bg-blue-500 text-slate-50 text-md lg:text-xl xl:text-2xl rounded-full absolute -bottom-32 md:-bottom-40 lg:-bottom-48 xl:-bottom-[340px] left-8 lg:left-0 ring-offset-2 ring ring-blue-500 hover:bg-blue-600 duration-500 ease-in-out">
-        Read More
-      </a>
+<div class="projects_explore">
+  <div class="container">
+    <div class="grid lg:grid-cols-3 gap-6">
+      <app-project-explore-card
+        title="Ongoing Projects"
+        image="images/a3.jpg"
+        route="/projectcategoryOngoing"
+      ></app-project-explore-card>
+      <app-project-explore-card
+        title="Upcoming Projects"
+        image="images/a1.jpg"
+        route="/projectcategoryUpcoming"
+      ></app-project-explore-card>
+      <app-project-explore-card
+        title="Completed Projects"
+        image="images/b1.jpg"
+        route="/projectcategoryCompleted"
+      ></app-project-explore-card>
     </div>
   </div>
+</div>
 
-  <!-- Our Projects Section -->
-  <div class="our_projects pt-14 pb-10 md:px-2">
-    <div class="container mx-auto">
-      <div class="our_project_title mb-14 text-center md:text-left">
-        <h1 class="text-4xl lg:text-6xl mb-5 text-slate-800">Our Feature</h1>
-        <h1 class="md:ms-32 text-4xl lg:text-6xl text-slate-800">Projects</h1>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
-        <div *ngFor="let item of state.list" class="project_card border rounded-2xl shadow-xl hover:-translate-y-2 hover:ring-1 hover:ring-offset-2 hover:ring-blue-500 duration-500 ease-in-out">
-          <a [routerLink]="'/projectdetails/' + item.id">
-            <div class="project_card_img rounded-t-2xl overflow-hidden">
-              <img class="w-full h-[450px] md:h-[350px] lg:h-[380px] xl:h-[450px] rounded-t-2xl object-cover" [src]="'/images/banner/banner-3.png'" alt="" />
-            </div>
-            <div class="project_card_details p-4 text-center">
-              <h1 class="text-2xl font-bold mb-3 duration-500 ease-in-out">{{ item.name }}</h1>
-              <p class="font-semibold text-gray-500 flex items-center gap-2 justify-center">
-                <span>{{ item.category }}</span>
-                <span class="w-3 h-3 text-sm bg-gray-500 rounded-full"></span>
-                <span>{{ item.type }}</span>
-              </p>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="hidden adds items-center justify-between w-2/6 h-20 p-3 bg-blue-500 ring-2 ring-offset-2 ring-blue-500 mx-auto rounded-full shadow-xl">
-        <div class="px-4 flex items-center gap-3">
-          <i class="ri-bookmark-3-fill text-3xl text-slate-50"></i>
-          <span class="text-2xl font-semibold text-slate-50">Get In Touch</span>
-        </div>
-        <div>
-          <button class="bg-slate-50 px-5 py-4 text-blue-500 rounded-full font-semibold hover:bg-slate-100 duration-500 ease-in-out">
-            Cotacting Now
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+<app-projects-grid [projects]="state.list"></app-projects-grid>
+<app-vision-banner />
+
+<app-testimonial />
+<app-modal ></app-modal>
+
 
   <!-- Testimonial Section -->
   <div class="testimonial py-10 bg-gray-100 md:px-2">

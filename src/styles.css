@@ -37,6 +37,13 @@ body {
   line-height: 1.5;
 }
 
+.site-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem; 
+  box-sizing: border-box;
+}
+
 /* Shared modern button base */
 .btn-modern {
   position: relative;

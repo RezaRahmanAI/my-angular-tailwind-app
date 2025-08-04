@@ -1,0 +1,31 @@
+<section class="testimonial_section">
+  <div class="heading">
+    <div><h1>Real People</h1></div>
+    <div><h1>Real Praises</h1></div>
+  </div>
+  <div class="content-card">
+    <div class="image-wrapper">
+      <img
+        *ngIf="testimonials[currentIndex].image"
+        [src]="testimonials[currentIndex].image"
+        [alt]="testimonials[currentIndex].name"
+      />
+    </div>
+    <div class="text-wrapper">
+      <h2>What our customers are saying</h2>
+      <p class="sub">Serving over 50k+ customers every month</p>
+      <div class="box">
+        <div class="stars">
+          <span *ngFor="let i of [1,2,3,4,5]" class="star">★</span>
+        </div>
+        <p class="desc">{{ testimonials[currentIndex].description }}</p>
+        <p class="name">{{ testimonials[currentIndex].name }}</p>
+      </div>
+      <div class="nav">
+        <button (click)="prev()">←</button>
+        <span>{{ currentIndex + 1 }} of {{ testimonials.length }}</span>
+        <button (click)="next()">→</button>
+      </div>
+    </div>
+  </div>
+</section>

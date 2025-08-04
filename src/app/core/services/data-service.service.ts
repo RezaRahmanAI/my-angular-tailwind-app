@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Slide, Testimonial } from '../models/model';
+import { Offer, Slide, Testimonial } from '../models/model';
 
 // Define or import Project interface
 export interface Project {

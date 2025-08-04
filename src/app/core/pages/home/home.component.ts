@@ -10,19 +10,25 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
-// import { HttpClient } from '@angular/common/http'; // Commented out
-// import { environment } from '../../environments/environment'; // Commented out
 import { trigger, transition, style, animate } from '@angular/animations';
-import { ProjectSliderComponent } from '../../components/project-slider/project-slider.component';
 import { HeroComponent } from '../../components/hero/hero.component';
-import { FooterComponent } from '../../shared/footer/footer.component';
-import { NavbarComponent } from '../../shared/navbar/navbar.component';
-import { ProjectExploreComponent } from "../../components/project-explore/project-explore.component";
+import { VisionBannerComponent } from '../../components/vision-banner/vision-banner.component';
+import { ModalComponent } from '../../components/modal/modal.component';
+import { ProjectExploreCardComponent } from '../../components/project-explore-card/project-explore-card.component';
+import { ProjectsGridComponent } from '../../components/projects-grid/projects-grid.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeroComponent, FooterComponent, ProjectExploreComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HeroComponent,
+    ProjectExploreCardComponent,
+    ProjectsGridComponent,
+    VisionBannerComponent,
+    ModalComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Allows swiper-container and swiper-slide
@@ -38,7 +44,7 @@ import { ProjectExploreComponent } from "../../components/project-explore/projec
     ]),
   ],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   @ViewChild('swiperRef') swiperRef!: ElementRef<HTMLElement>;
   @ViewChild('modalRef') modalRef!: ElementRef<HTMLDivElement>;
 
@@ -48,12 +54,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   state = {
     testis: [
       {
-        image: 'dummy-testimonial-1.jpg',
+        image: 'images/a3.jpg',
         name: 'John Doe',
         description: 'This is a great service! Highly recommended.',
       },
       {
-        image: 'dummy-testimonial-2.jpg',
+        image: 'images/a3.jpg',
         name: 'Jane Smith',
         description: 'Amazing experience with the team.',
       },
@@ -64,7 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         name: 'Project One',
         type: 'Residential',
         address: 'Dhaka, BD',
-        thumbnail: 'dummy-project-1.jpg',
+        thumbnail: 'images/a3.jpg',
         category: 'Featured',
       },
       {
@@ -72,7 +78,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         name: 'Project Two',
         type: 'Commercial',
         address: 'Chattogram, BD',
-        thumbnail: 'dummy-project-2.jpg',
+        thumbnail: 'images/a3.jpg',
         category: 'Featured',
       },
       {
@@ -80,12 +86,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
         name: 'Project Three',
         type: 'Mixed Use',
         address: 'Khulna, BD',
-        thumbnail: 'dummy-project-3.jpg',
+        thumbnail: 'images/a3.jpg',
         category: 'Featured',
       },
     ],
     offer: {
-      picture: 'dummy-offer.jpg',
+      picture: 'images/a3.jpg',
     },
   };
   currentIndex = 0;
@@ -98,37 +104,37 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // this.getTestimonials();
   }
 
-  ngAfterViewInit(): void {
-    if (this.swiperRef) {
-      console.log('Initializing Swiper on:', this.swiperRef.nativeElement);
-      new Swiper(this.swiperRef.nativeElement, {
-        modules: [Navigation, Pagination],
-        slidesPerView: 3,
-        spaceBetween: 30,
-        loop: true,
-        speed: 600,
-        effect: 'slide',
-        navigation: {
-          prevEl: '.custom-prev',
-          nextEl: '.custom-next',
-        },
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-        },
-        breakpoints: {
-          320: { slidesPerView: 1, spaceBetween: 10 },
-          640: { slidesPerView: 1, spaceBetween: 15 },
-          768: { slidesPerView: 1, spaceBetween: 15 },
-          1024: { slidesPerView: 2, spaceBetween: 20 },
-          1280: { slidesPerView: 3, spaceBetween: 30 },
-        },
-      });
-      console.log('Swiper initialized');
-    } else {
-      console.error('swiperRef not found');
-    }
-  }
+  // ngAfterViewInit(): void {
+  //   if (this.swiperRef) {
+  //     console.log('Initializing Swiper on:', this.swiperRef.nativeElement);
+  //     new Swiper(this.swiperRef.nativeElement, {
+  //       modules: [Navigation, Pagination],
+  //       slidesPerView: 3,
+  //       spaceBetween: 30,
+  //       loop: true,
+  //       speed: 600,
+  //       effect: 'slide',
+  //       navigation: {
+  //         prevEl: '.custom-prev',
+  //         nextEl: '.custom-next',
+  //       },
+  //       pagination: {
+  //         el: '.swiper-pagination',
+  //         clickable: true,
+  //       },
+  //       breakpoints: {
+  //         320: { slidesPerView: 1, spaceBetween: 10 },
+  //         640: { slidesPerView: 1, spaceBetween: 15 },
+  //         768: { slidesPerView: 1, spaceBetween: 15 },
+  //         1024: { slidesPerView: 2, spaceBetween: 20 },
+  //         1280: { slidesPerView: 3, spaceBetween: 30 },
+  //       },
+  //     });
+  //     console.log('Swiper initialized');
+  //   } else {
+  //     console.error('swiperRef not found');
+  //   }
+  // }
 
   // constructor(private http: HttpClient) {} // Commented out
   constructor() {}
