@@ -1,36 +1,62 @@
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-slider">
-    <div 
-      class="slide" 
+<section class="hero" aria-label="Homepage hero slideshow">
+  <div class="hero-slider" (mouseenter)="pause()" (mouseleave)="resume()">
+    <div
+      class="slide"
       *ngFor="let slide of slides; let i = index"
       [class.active]="i === currentSlideIndex"
+      [attr.aria-hidden]="i === currentSlideIndex ? 'false' : 'true'"
       [style.background-image]="'url(' + slide.image + ')'"
+      role="group"
+      [attr.aria-roledescription]="'slide ' + (i + 1) + ' of ' + slides.length"
     >
       <div class="slide-overlay"></div>
       <div class="slide-content">
         <h1 class="slide-title" [class.animate]="i === currentSlideIndex">
           {{ slide.title }}
         </h1>
+        <p class="slide-sub">
+          {{ slide.subtitle }}
+        </p>
+        <div class="hero-ctas">
+          <a routerLink="/projects" class="btn-modern btn-primary">
+            Browse Projects
+            <span class="icon-arrow">→</span>
+          </a>
+          <a routerLink="/contact" class="btn-modern btn-secondary">
+            Get in Touch
+            <span class="underline-expand"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-  
+
   <!-- Slide Indicators -->
-  <div class="slide-indicators">
-    <button 
+  <div class="slide-indicators" role="tablist" aria-label="Slide navigation">
+    <button
       *ngFor="let slide of slides; let i = index"
       class="indicator"
       [class.active]="i === currentSlideIndex"
       (click)="goToSlide(i)"
+      [attr.aria-label]="'Go to slide ' + (i + 1)"
+      [attr.aria-selected]="i === currentSlideIndex"
+      role="tab"
     ></button>
   </div>
-  
+
   <!-- Social Media Icons -->
-  <div class="social-media">
-    <a href="#" class="social-icon" title="Facebook">📘</a>
-    <a href="#" class="social-icon" title="Instagram">📷</a>
-    <a href="#" class="social-icon" title="Twitter">🐦</a>
-    <a href="#" class="social-icon" title="LinkedIn">💼</a>
+  <div class="social-media" aria-label="Social media links">
+    <a href="#" class="social-icon" title="Facebook" aria-label="Facebook">
+      <i class="ri-facebook-circle-line"></i>
+    </a>
+    <a href="#" class="social-icon" title="Instagram" aria-label="Instagram">
+      <i class="ri-instagram-line"></i>
+    </a>
+    <a href="#" class="social-icon" title="Twitter" aria-label="Twitter">
+      <i class="ri-twitter-x-fill"></i>
+    </a>
+    <a href="#" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
+      <i class="ri-linkedin-box-fill"></i>
+    </a>
   </div>
 </section>
