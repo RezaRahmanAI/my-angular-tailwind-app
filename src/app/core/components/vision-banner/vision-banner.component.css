@@ -1,9 +1,5 @@
 .vision_banner {
-  background: linear-gradient(
-      135deg,
-      rgba(46, 139, 87, 0.75),
-      rgba(255, 255, 255, 0.05)
-    ),
+  background:
     url("/images/banner/banner-3.png") no-repeat center/cover;
   background-size: cover;
   position: relative;
@@ -101,8 +97,7 @@
   font-weight: 600;
   font-style: normal;
   padding: 2.75rem 1rem;
-  font-size: 0.875rem;
-  background-color: #3b82f6;
+  font-size: 0.875rem;  
   color: #f8fafc;
   border-radius: 9999px;
   position: absolute;
@@ -136,6 +131,3 @@
   }
 }
 
-.vision_banner a:hover {
-  background-color: #2563eb;
-}

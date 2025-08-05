@@ -19,15 +19,18 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  @Input() sideMenuOpen: boolean = false; // Receive menu state from parent
+  @Input() sideMenuOpen: boolean = false;
   @Output() toggleMenu = new EventEmitter<void>();
 
   isHidden = false;
+  isAtTop = true; // NEW: track if at top
+  showTransparent = false; // NEW: show transparent bg when scrolling up
   private lastScrollY = 0;
   private ticking = false;
 
   ngOnInit() {
     this.lastScrollY = window.scrollY;
+    this.isAtTop = this.lastScrollY === 0;
     window.addEventListener('scroll', this.onScroll, { passive: true });
   }
 
@@ -43,11 +46,24 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (!this.ticking) {
       window.requestAnimationFrame(() => {
         const current = window.scrollY;
-        if (current > this.lastScrollY + 10 && current > 100) {
+        const scrollingDown = current > this.lastScrollY + 10;
+        const scrollingUp = current + 50 < this.lastScrollY;
+
+        this.isAtTop = current === 0;
+
+        if (scrollingDown && current > 100) {
           this.isHidden = true;
-        } else if (current + 50 < this.lastScrollY) {
+          this.showTransparent = false;
+        } else if (scrollingUp) {
+          this.isHidden = false;
+          this.showTransparent = true;
+        }
+
+        if (this.isAtTop) {
+          this.showTransparent = false;
           this.isHidden = false;
         }
+
         this.lastScrollY = current;
         this.ticking = false;
       });

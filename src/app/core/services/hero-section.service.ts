@@ -14,7 +14,7 @@ export class HeroSectionService {
     // Mock data; replace with actual API call
     const slides: Slide[] = [
       {
-        image: 'images/h1.jpg',
+        image: 'images/1.jpg',
         alt: 'Animal 1',
         author: 'LUNDEV',
         title: 'DESIGN SLIDER',
@@ -25,7 +25,7 @@ export class HeroSectionService {
         thumbnailDescription: 'Description',
       },
       {
-        image: 'images/h2.jpg',
+        image: 'images/1.jpg',
         alt: 'Animal 2',
         author: 'LUNDEV',
         title: 'DESIGN SLIDER',
@@ -36,7 +36,7 @@ export class HeroSectionService {
         thumbnailDescription: 'Description',
       },
       {
-        image: 'images/h3.jpg',
+        image: 'images/1.jpg',
         alt: 'Animal 3',
         author: 'LUNDEV',
         title: 'DESIGN SLIDER',
@@ -47,7 +47,7 @@ export class HeroSectionService {
         thumbnailDescription: 'Description',
       },
       {
-        image: 'images/a2.jpg',
+        image: 'images/1.jpg',
         alt: 'Animal 4',
         author: 'LUNDEV',
         title: 'DESIGN SLIDER',

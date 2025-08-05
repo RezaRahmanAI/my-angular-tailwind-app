@@ -1,7 +1,12 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { HeroSectionComponent } from './hero-section/hero-section.component';
+import { HistoryComponent } from './history/history.component';
+import { OwnerSpeechComponent } from './owner-speech/owner-speech.component';
+import { MissionVisionComponent } from './mission-vision/mission-vision.component';
+import { TeamComponent } from './team/team.component';
+import { TeamModalComponent } from './team-modal/team-modal.component';
 
 interface TeamMember {
   id: number;
@@ -17,27 +22,21 @@ interface TeamMember {
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HeroSectionComponent,
+    HistoryComponent,
+    OwnerSpeechComponent,
+    MissionVisionComponent,
+    TeamComponent,
+    TeamModalComponent,
+  ],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  animations: [
-    trigger('fadeScale', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(0.9)' }),
-        animate('500ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
-      ]),
-      transition(':leave', [
-        animate(
-          '300ms ease-out',
-          style({ opacity: 0, transform: 'scale(0.9)' })
-        ),
-      ]),
-    ]),
-  ],
 })
 export class AboutComponent implements OnInit {
-  baseUrl = 'https://dummy.com'; // replace with real env if available
+  baseUrl = 'https://dummy.com';
 
   state: {
     about: {
@@ -56,17 +55,17 @@ export class AboutComponent implements OnInit {
   } = {
     about: {
       history:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
+        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
       ownerName: 'John Smith',
       ownerDesignation: 'CEO & Founder',
       ownerSpeech:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
+        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
       ownerImage: '/images/employee/employee-1.jpg',
       mission:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
+        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
       missionImage: '/images/employee/employee-1.jpg',
       vision:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work. In almost the decade long of active participation in this real estate development industry. When we started Tricon Properties Ltd, we were determined to build teams with the best and brightest talents in the Industry. I would like to thank my teams and workers of Tricon Properties. Furthermore, we would like to dedicate the success of this organization to their hard work and talented efforts. Their contribution, quality of service, and sincerity are the stepping stones of the success of this company. Most importantly, my sincere thanks go to the people of Rajshahi for positioning Tricon Properties to where it is today. Our client relationships are built on mutual trust and respect. In essence, it is the love and appreciation of our venerable clients that encourage us to do more and work towards building a sustainable development community in Rajshahi. Thank you.',
+        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
       visionImage: '/images/employee/employee-1.jpg',
     },
     team: [
@@ -97,18 +96,12 @@ export class AboutComponent implements OnInit {
 
   isModalVisible = false;
 
-  constructor() {}
-
   ngOnInit(): void {
-    // placeholder for future API initialization
+    // Placeholder for future API initialization
   }
 
   onToggle(member: TeamMember | null = null): void {
-    if (member) {
-      this.state.selectedTeamMember = { ...member };
-    } else {
-      this.state.selectedTeamMember = null;
-    }
+    this.state.selectedTeamMember = member ? { ...member } : null;
     this.isModalVisible = !this.isModalVisible;
   }
 

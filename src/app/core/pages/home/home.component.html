@@ -30,20 +30,20 @@
 
 
   <!-- Testimonial Section -->
-  <div class="testimonial py-10 bg-gray-100 md:px-2">
+  <!-- <div class="testimonial py-10 md:px-2">
     <div class="container mx-auto">
       <div class="testimonial_title mb-14 text-center md:text-left">
         <h1 class="text-4xl lg:text-6xl mb-3 lg:mb-5 text-slate-800">Real People</h1>
         <h1 class="md:ms-16 text-4xl lg:text-6xl text-slate-800">Real Praises</h1>
       </div>
-      <div class="flex flex-col md:flex-row items-center gap-0 lg:gap-10 bg-white p-6 rounded-lg">
+      <div class="flex flex-col md:flex-row items-center gap-0 lg:gap-10  p-6 rounded-lg">
         <div class="w-full md:w-1/3">
           <img *ngIf="state.testis[currentIndex]?.image" [src]="'/images/banner/banner-3.png'" alt="Customer" class="rounded-lg w-full h-[400px] md:h-[300px] lg:h-[400px] xl:h-[500px] object-cover" />
         </div>
         <div class="w-full md:w-2/3 p-6">
           <h2 class="text-2xl font-bold text-gray-900">What our customers are saying</h2>
           <p class="text-gray-500 text-sm">Serving over 50k+ customers every month</p>
-          <div class="bg-gray-100 p-4 rounded-lg mt-4">
+          <div class=" p-4 rounded-lg mt-4">
             <div class="flex text-yellow-500 mb-2">
               <span *ngFor="let i of [1, 2, 3, 4, 5]" class="w-5 h-5">★</span>
             </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Modal Section -->
   <div *ngIf="isModalVisible" class="fixed inset-0 flex items-center justify-center z-50" [@modalAnimation]>
