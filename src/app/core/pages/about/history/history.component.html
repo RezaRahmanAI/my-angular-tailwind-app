@@ -1,0 +1,11 @@
+<section class="history py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-4xl lg:text-6xl font-bold text-[var(--text)] mb-6">Our History</h2>
+    <div class="prose max-w-none text-[var(--text)]">
+      <p *ngIf="history; else noHistory">{{ history }}</p>
+      <ng-template #noHistory>
+        <p class="text-gray-500">No history available.</p>
+      </ng-template>
+    </div>
+  </div>
+</section>

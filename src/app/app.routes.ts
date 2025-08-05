@@ -6,6 +6,7 @@ import { ContactComponent } from './core/pages/contact/contact.component';
 import { LandownerComponent } from './core/pages/landowner/landowner.component';
 import { GalleryComponent } from './core/pages/gallery/gallery.component';
 import { BlogsEventsComponent } from './core/pages/blogs-events/blogs-events.component';
+import { ProjectDetailsComponent } from './core/pages/project-details/project-details.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
     path: 'project',
     component: ProjectsComponent,
   },
+  { path: 'projectdetails/:id', component: ProjectDetailsComponent },
   {
     path: 'contact',
     component: ContactComponent,

@@ -1,28 +1,40 @@
 <div class="relative overflow-hidden">
-  <!-- Hero / Title -->
-  <div class="headering relative">
-    <div class="page_title absolute inset-x-0 top-1/3 flex justify-center">
-      <div class="inline-flex items-baseline gap-2 bg-white/10 backdrop-blur rounded-2xl px-6 py-4 shadow-lg max-w-[90%] sm:max-w-2xl">
-        <span class="text-indigo-300 font-mono text-lg select-none">/</span>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-          Projects
-        </h1>
-      </div>
+  <!-- Hero Section -->
+<div
+  class="relative bg-cover bg-center h-[320px] sm:h-[400px] lg:h-[500px] flex items-center justify-center"
+  style="background-image: url('/images/banner/banner-3.png')"
+>
+  <div class="absolute inset-0 mix-blend-normal"></div>
+  <div
+    class="relative z-10 text-center px-5 py-28 sm:py-40 max-w-3xl animate-entrance"
+  >
+    <div
+      class="inline-flex items-baseline gap-2 bg-[rgba(0,0,0,0.3)] backdrop-blur-md rounded-2xl px-6 py-4 shadow-lg max-w-[90%] sm:max-w-2xl"
+    >
+      <span class="text-[var(--accent)] font-mono text-lg select-none">/</span>
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight"
+      >
+        Projects
+      </h1>
     </div>
-  </div>
 
-  <!-- Filter bar -->
-  <section class="projects_search_bar py-8 bg-gray-50 border-b">
-    <div class="lg:container mx-auto px-4">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+  </div>
+</div>
+
+
+  <!-- Filter Bar -->
+  <section class="projects_search_bar py-8 bg-[var(--card-bg)] border-b">
+    <div class="container">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
         <!-- Category -->
-        <div class="col-span-1">
-          <label for="category" class="block text-xs font-medium text-gray-700 mb-1">Project Category</label>
+        <div>
+          <label for="category" class="block text-xs font-medium text-[var(--text)] mb-1">Project Category</label>
           <select
             #categorySelect
             id="category"
             name="category"
-            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
           >
             <option value="all" selected>All Categories</option>
             <option value="Ongoing">Ongoing</option>
@@ -32,13 +44,13 @@
         </div>
 
         <!-- Type -->
-        <div class="col-span-1">
-          <label for="type" class="block text-xs font-medium text-gray-700 mb-1">Project Type</label>
+        <div>
+          <label for="type" class="block text-xs font-medium text-[var(--text)] mb-1">Project Type</label>
           <select
             #typeSelect
             id="type"
             name="type"
-            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
           >
             <option value="all" selected>All Types</option>
             <option value="Residential">Residential</option>
@@ -46,73 +58,40 @@
           </select>
         </div>
 
-        <!-- Location -->
-        <div class="col-span-1">
-          <label for="location" class="block text-xs font-medium text-gray-700 mb-1">Location</label>
-          <select
-            #locationSelect
-            id="location"
-            name="location"
-            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="all" selected>All Locations</option>
-            <option value="Rajshahi">Rajshahi</option>
-            <option value="Dhaka">Dhaka</option>
-            <option value="Chattagram">Chattagram</option>
-            <option value="Rangpur">Rangpur</option>
-          </select>
-        </div>
-
-        <!-- Keyword (optional) -->
-        <div class="col-span-1">
-          <label for="keyword" class="block text-xs font-medium text-gray-700 mb-1">Search</label>
-          <input
-            id="keyword"
-            name="keyword"
-            type="text"
-            placeholder="Project name or area"
-            #keywordInput
-            class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
         <!-- Actions -->
-        <div class="col-span-1 flex gap-2">
-          <div class="flex-1">
-            <button
-              (click)="getProject()"
-              aria-label="Apply filters"
-              class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-semibold rounded-lg px-4 py-2 hover:scale-[1.02] transition"
-            >
-              <i class="ri-filter-2-line"></i>
-              Filter
-            </button>
-          </div>
-          <div class="flex-1">
-            <button
-              (click)="resetFilters()"
-              aria-label="Reset filters"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium hover:bg-gray-100 transition"
-            >
-              Reset
-            </button>
-          </div>
+        <div class="flex gap-2">
+          <button
+            (click)="getProject()"
+            aria-label="Apply filters"
+            class="btn-primary flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold"
+          >
+            <i class="ti ti-filter"></i>
+            Filter
+          </button>
+          <button
+            (click)="resetFilters()"
+            aria-label="Reset filters"
+            class="btn-secondary flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold"
+          >
+            <i class="ti ti-refresh"></i>
+            Reset
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects grid -->
-  <section class="project_section py-12 px-4">
-    <div class="lg:container mx-auto">
+  <!-- Projects Grid -->
+  <section class="project_section py-12">
+    <div class="container">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
           *ngFor="let item of state.list"
-          class="project_card group relative overflow-hidden rounded-2xl shadow-lg bg-white hover:shadow-2xl transition transform"
+          class="project_card group relative overflow-hidden rounded-2xl shadow-[var(--shadow)] bg-[var(--card-bg)] flex flex-col"
         >
           <div class="absolute top-4 left-4 z-10">
             <span
-              class="px-3 py-1 text-xs font-semibold rounded-full uppercase tracking-wide"
+              class="badge"
               [ngClass]="{
                 'bg-green-100 text-green-800': item.category === 'Completed',
                 'bg-blue-100 text-blue-800': item.category === 'Ongoing',
@@ -122,39 +101,38 @@
               {{ item.category || 'N/A' }}
             </span>
           </div>
-
-          <a [routerLink]="['/projectdetails', item.id]" class="block">
+          <a [routerLink]="['/projectdetails', item.id]" class="block flex flex-col flex-grow">
             <div class="project_card_img overflow-hidden rounded-t-2xl relative">
               <img
-                class="w-full h-[320px] object-cover transition-transform duration-700 group-hover:scale-105"
-                [attr.src]="'/images/banner/banner-3.png'"
+                class="w-full h-[320px] object-cover transition-transform duration-500 group-hover:scale-105 group-hover:brightness-80"
+                [src]="baseUrl + '/api/attachment/get/' + item.thumbnail"
                 [attr.alt]="item.name || 'Project image'"
                 loading="lazy"
                 (error)="onImageError($event)"
               />
-              <div class="absolute bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 shadow">
+              <div class="absolute bottom-4 right-4 bg-[var(--card-bg)]/80 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 shadow">
                 <span>{{ item.type || '—' }}</span>
               </div>
             </div>
-            <div class="project_card_details p-5 text-center">
-              <h2 class="text-xl font-bold mb-1 group-hover:text-indigo-600 transition">
+            <div class="project_card_details p-5 text-center flex flex-col flex-grow">
+              <h2 class="text-xl font-bold mb-1 group-hover:text-[var(--primary)] transition">
                 {{ item.name }}
               </h2>
-              <div class="text-sm text-gray-500 flex justify-center items-center gap-2">
+              <div class="text-sm text-gray-500 flex justify-center items-center gap-2 mb-3">
                 <span>{{ item.location || 'Unknown' }}</span>
                 <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
                 <span>{{ item.type }}</span>
               </div>
-              <div class="mt-3 flex justify-center gap-3">
+              <div class="mt-auto flex justify-center gap-3">
                 <button
-                  class="text-xs bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition"
-                  [attr.aria-label]="'View details of ' + item.name "
+                  class="btn-primary text-sm px-6 py-2.5 rounded-full font-semibold view-details"
+                  [attr.aria-label]="'View details of ' + item.name"
                 >
                   View Details
                 </button>
                 <button
                   *ngIf="item.canSchedule"
-                  class="text-xs border border-indigo-500 text-indigo-500 px-4 py-2 rounded-full hover:bg-indigo-50 transition"
+                  class="btn-secondary text-sm px-6 py-2.5 rounded-full font-semibold"
                   [attr.aria-label]="'Schedule visit for ' + item.name"
                 >
                   Schedule Visit
@@ -163,7 +141,6 @@
             </div>
           </a>
         </div>
-
         <div *ngIf="!state.list.length" class="col-span-full text-center py-16 text-gray-500">
           No projects match your filters. Try adjusting criteria.
         </div>

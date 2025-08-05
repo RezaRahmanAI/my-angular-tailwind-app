@@ -1,0 +1,35 @@
+<div class="project_gallary py-14" id="projectGallery">
+  <div class="container">
+    <h1 class="text-center">Gallery</h1>
+    <div class="containerw">
+      <div *ngFor="let image of gallery" class="item">
+        <a [href]="baseUrl + '/api/attachment/get/' + image.content" data-fancybox="gallery">
+          <span *ngIf="image.contentType === 'Image'">
+            <img
+              class="w-full h-full"
+              [src]="baseUrl + '/api/attachment/get/' + image.content"
+              alt="Gallery image"
+              (error)="onImageError($event)"
+            />
+          </span>
+          <span *ngIf="image.contentType === 'Video'">
+            <video class="w-full h-full" controls>
+              <source [src]="baseUrl + '/api/attachment/get/' + image.content" type="video/mp4">
+            </video>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="adds">
+      <div class="px-4 flex items-center gap-3">
+        <i class="ri-bookmark-3-fill"></i>
+      </div>
+      <div>
+        <a routerLink="/contact" class="btn-primary">Order Now</a>
+      </div>
+      <div class="px-4 flex items-center gap-3">
+        <i class="ri-bookmark-3-fill"></i>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="tab_bar sticky top-10 z-20 hidden lg:block">
+  <div class="container">
+    <div class="flex items-center gap-10 p-3 bg-gray-200 border border-slate-200 mt-10 shadow-inner rounded-md">
+      <button (click)="scrollToSection('atGlance')" [class.active]="activeTab === 'atGlance'">
+        <p class="tab" [class.bg-blue-500]="activeTab === 'atGlance'" [class.text-slate-50]="activeTab === 'atGlance'">At a Glance</p>
+      </button>
+      <button (click)="scrollToSection('featureAndAmenities')" [class.active]="activeTab === 'featureAndAmenities'">
+        <p class="tab" [class.bg-blue-500]="activeTab === 'featureAndAmenities'" [class.text-slate-50]="activeTab === 'featureAndAmenities'">Feature & Amenities</p>
+      </button>
+      <button (click)="scrollToSection('projectGallery')" [class.active]="activeTab === 'projectGallery'">
+        <p class="tab" [class.bg-blue-500]="activeTab === 'projectGallery'" [class.text-slate-50]="activeTab === 'projectGallery'">Gallery</p>
+      </button>
+      <button (click)="scrollToSection('locationMap')" [class.active]="activeTab === 'locationMap'">
+        <p class="tab" [class.bg-blue-500]="activeTab === 'locationMap'" [class.text-slate-50]="activeTab === 'locationMap'">Location Map</p>
+      </button>
+      <button (click)="scrollToSection('relatedProjects')" [class.active]="activeTab === 'relatedProjects'">
+        <p class="tab" [class.bg-blue-500]="activeTab === 'relatedProjects'" [class.text-slate-50]="activeTab === 'relatedProjects'">Related Projects</p>
+      </button>
+      <button (click)="scrollToSection('contacting')" [class.active]="activeTab === 'contacting'">
+        <p class="tab" [class.bg-blue-500]="activeTab === 'contacting'" [class.text-slate-50]="activeTab === 'contacting'">Contacting</p>
+      </button>
+    </div>
+  </div>
+</div>

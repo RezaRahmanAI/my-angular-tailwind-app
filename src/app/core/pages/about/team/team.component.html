@@ -1,0 +1,63 @@
+<section class="our_team py-16 bg-white px-4">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold text-[var(--text)] mb-12 text-center">Our Team</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        *ngFor="let teamitem of team"
+        (click)="onToggle(teamitem)"
+        class="team_card animate-gsap group relative p-6 border rounded-2xl shadow-md bg-white cursor-pointer"
+      >
+        <div class="flex flex-col items-center">
+          <div class="team_image mb-6 overflow-hidden rounded-full w-36 h-36">
+            <img
+              [src]="teamitem.image"
+              alt="{{ teamitem.name }}"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-center">
+            <h3 class="team_name text-xl font-semibold text-[var(--text)] mb-1">
+              {{ teamitem.name }}
+            </h3>
+            <p class="team_designation text-[var(--accent)] font-medium mb-3">
+              {{ teamitem.designation }}
+            </p>
+            <p class="team_description text-sm text-gray-600 mb-4">
+              {{ teamitem.description }}
+            </p>
+            <div class="flex justify-center gap-4">
+              <a
+                *ngIf="teamitem.facebook"
+                [href]="teamitem.facebook"
+                [attr.aria-label]="'Facebook of ' + teamitem.name"
+                target="_blank"
+                class="text-white bg-[var(--primary)] p-3 rounded-full text-lg"
+              >
+                <i class="ti ti-brand-facebook"></i>
+              </a>
+              <a
+                *ngIf="teamitem.twitter"
+                [href]="teamitem.twitter"
+                [attr.aria-label]="'Twitter of ' + teamitem.name"
+                target="_blank"
+                class="text-white bg-[var(--text)] p-3 rounded-full text-lg"
+              >
+                <i class="ti ti-brand-twitter"></i>
+              </a>
+              <a
+                *ngIf="teamitem.linkedin"
+                [href]="teamitem.linkedin"
+                [attr.aria-label]="'LinkedIn of ' + teamitem.name"
+                target="_blank"
+                class="text-white bg-blue-700 p-3 rounded-full text-lg"
+              >
+                <i class="ti ti-brand-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

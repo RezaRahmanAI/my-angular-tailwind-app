@@ -1,14 +1,21 @@
 .vision_banner {
-  background: linear-gradient(
-      135deg,
-      rgba(46, 139, 87, 0.75),
-      rgba(255, 255, 255, 0.05)
-    ),
-    url("/images/banner/banner-3.png") no-repeat center/cover;
+  background: url("/images/banner/banner-3.png") no-repeat center center / cover;
+  background-attachment: fixed;
   background-size: cover;
+  background-position: center;
   position: relative;
   margin-top: 20px;
+  margin-bottom: 20px;
+  z-index: 1;
 }
+.vision_banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
 @media (min-width: 768px) {
   .vision_banner {
     padding-top: 7rem;
@@ -95,24 +102,6 @@
   }
 }
 
-.vision_banner a {
-  font-family: var(--heading);
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-  padding: 2.75rem 1rem;
-  font-size: 0.875rem;
-  background-color: #3b82f6;
-  color: #f8fafc;
-  border-radius: 9999px;
-  position: absolute;
-  bottom: -8rem;
-  left: 2rem;
-  ring: 2px solid #3b82f6;
-  ring-offset: 2px;
-  transition: background-color 500ms ease-in-out;
-}
-
 @media (min-width: 768px) {
   .vision_banner a {
     bottom: -10rem;
@@ -134,8 +123,4 @@
     padding: 4rem 1.5rem;
     font-size: 1.5rem;
   }
-}
-
-.vision_banner a:hover {
-  background-color: #2563eb;
 }

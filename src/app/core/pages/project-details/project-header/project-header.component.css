@@ -1,0 +1,32 @@
+.headering {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(46, 139, 87, 0.85), rgba(63, 166, 125, 0.85)), url('/images/banner/banner-3.png') no-repeat center/cover;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+}
+
+.page_title h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 2.25rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  padding: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .headering { min-height: 400px; }
+  .page_title h1 { font-size: 3rem; }
+}
+
+@media (min-width: 1024px) {
+  .headering { min-height: 500px; }
+}
+
+@media (min-width: 1280px) {
+  .headering { min-height: 600px; }
+}
