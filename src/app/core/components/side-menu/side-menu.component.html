@@ -1,7 +1,9 @@
 <!-- Side Menu -->
 <div class="side-menu" [class.open]="sideMenuOpen">
   <div class="side-menu-content">
-    <button class="close-btn" (click)="toggleSideMenu()">×</button>
+    <button *ngIf="sideMenuOpen" class="close-btn" (click)="closeMenu()" aria-label="Close menu">
+    &times; <!-- Or use an icon for the close button -->
+  </button>
     
     <!-- Main Menu -->
     <div class="main-menu">

@@ -9,10 +9,25 @@ import { FloatingSocialComponent } from "./core/components/floating-social/float
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FooterComponent, NavbarComponent, SideMenuComponent, FloatingSocialComponent],
+  imports: [
+    RouterOutlet,
+    FooterComponent,
+    NavbarComponent,
+    SideMenuComponent,
+    FloatingSocialComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'my-angular-tailwind-app';
+  sideMenuOpen = false;
+
+  onToggleMenu() {
+    this.sideMenuOpen = !this.sideMenuOpen;
+  }
+
+  onCloseMenu() {
+    this.sideMenuOpen = false;
+  }
 }

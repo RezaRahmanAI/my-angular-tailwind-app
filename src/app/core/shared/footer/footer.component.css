@@ -13,3 +13,7 @@ footer .rounded-full {
 footer .bg-indigo-700 {
   background-color: #4f46e5;
 }
+
+.backgroundColor{
+  background: linear-gradient(135deg, rgba(46,139,87,0.85), rgba(46,139,87,0.6));
+}

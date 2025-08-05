@@ -1,7 +1,7 @@
 <!-- src/app/app.component.html -->
 
-<app-navbar />
-<app-side-menu />
+<app-navbar (toggleMenu)="onToggleMenu()" [sideMenuOpen]="sideMenuOpen"></app-navbar>
+<app-side-menu [sideMenuOpen]="sideMenuOpen" (closeMenuEvent)="onCloseMenu()"></app-side-menu>
 <app-floating-social />
 <router-outlet />
 <app-footer />

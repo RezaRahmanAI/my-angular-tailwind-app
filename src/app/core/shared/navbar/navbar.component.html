@@ -1,23 +1,26 @@
-<!-- Navbar -->
-<nav class="navbar">
-  <div class="navbar-content">
-    <!-- Left Navigation -->
+<nav class="navbar" [class.hidden]="isHidden" aria-label="Main navigation">
+  <div class="site-container navbar-content">
     <div class="nav-left">
       <a routerLink="/home" class="nav-link">Home</a>
       <a routerLink="/about" class="nav-link">About Us</a>
       <a routerLink="/project" class="nav-link">Projects</a>
     </div>
-    
-    <!-- Logo -->
+
     <div class="nav-logo">
-      <h2>PRESTIGE<span>REALTY</span></h2>
+      <a routerLink="/home" aria-label="Prestige Realty homepage">
+        <img src="images/Logo.png" alt="Prestige Realty Logo" class="logo-img">
+      </a>
     </div>
-    
-    <!-- Right Navigation -->
+
     <div class="nav-right">
       <a routerLink="/contact" class="nav-link">Contact</a>
       <a routerLink="/landowner" class="nav-link">Landowner</a>
-      <button class="menu-btn" (click)="toggleSideMenu()">
+      <button
+        class="menu-btn"
+        (click)="toggleSideMenu()"
+        aria-label="Toggle menu"
+        [attr.aria-expanded]="sideMenuOpen"
+      >
         <span></span>
         <span></span>
         <span></span>

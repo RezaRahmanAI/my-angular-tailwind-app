@@ -11,10 +11,26 @@ body{
 @tailwind components;
 @tailwind utilities;
 
+/* styles.css or theme.css */
+/* :root {
+  --primary: #1E3A8A; 
+  --secondary: #F5E8C7; 
+  --accent1: #FF6F61; 
+  --accent2: #4FD1C5;
+  --neutral: #4B5EAA; 
+  --background: #FAF9F6; 
+  --white: #FFFFFF;
+  --radius: 1rem;
+  --shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.08);
+  --heading: "Playfair Display", serif;
+  --body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --coastal-gradient: linear-gradient(135deg, rgba(30, 58, 138, 0.75), rgba(79, 209, 197, 0.5));
+} */
+
 :root {
-  --primary: #2e8b57; /* Emerald green */
-  --accent: #ffd700; /* Bright yellow */
-  --muted-bg: #f5f2ee; /* Warm light gray */
+  --primary: #2e8b57;
+  --accent: #ffd700; 
+  --muted-bg: #f5f2ee; 
   --card-bg: #ffffff;
   --radius: 1rem;
   --shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.08);

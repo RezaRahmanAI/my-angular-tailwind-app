@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+// side-menu.component.ts
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,12 +11,13 @@ import { CommonModule } from '@angular/common';
 })
 export class SideMenuComponent {
   @Input() sideMenuOpen: boolean = false;
-
-  toggleSideMenu() {
-    this.sideMenuOpen = !this.sideMenuOpen;
-  }
+  @Output() closeMenuEvent = new EventEmitter<void>();
 
   handleMenuClick(section: string) {
     console.log(`Clicked on ${section} section`);
+  }
+
+  closeMenu() {
+    this.closeMenuEvent.emit();
   }
 }
