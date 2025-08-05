@@ -1,22 +1,11 @@
-/* Theme variables */
-.navbar {
-  --primary: #2e8b57;
-  --accent: #ffd700;
-  --muted: #f5f2ee;
-  --text: #1f2d46;
-  --radius: 0.75rem;
-  --shadow: 0 25px 60px -10px rgba(46, 139, 87, 0.15);
-  --heading: "Playfair Display", serif;
-  --body: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
 
 /* Baseline container */
-.site-container {
+/* .site-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.25rem;
   box-sizing: border-box;
-}
+} */
 
 /* Navbar */
 .navbar {
@@ -31,10 +20,31 @@
   align-items: center;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: linear-gradient(135deg, rgba(46, 139, 87, 0.08), rgba(255, 255, 255, 0.02));
-  transition: transform 0.5s ease-in-out, background 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+  /* background: linear-gradient(135deg, rgba(46, 139, 87, 0.08), rgba(255, 255, 255, 0.02)); */
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
   box-shadow: var(--shadow);
 }
+
+/* Default navbar style */
+.navbar {
+  transition: transform 0.5s ease-in-out, background 0.5s ease-in-out;
+  background: none;
+}
+
+/* When transparent background should appear (scroll up) */
+.navbar.transparent {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+/* When at top: no background at all */
+.navbar.at-top {
+  background: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
 
 /* Hide on scroll down */
 .navbar.hidden {
@@ -99,9 +109,7 @@
   height: 48px;
   width: auto;
   object-fit: contain;
-  display: block;
-  border-radius: var(--radius);
-  ring: 1px solid rgba(46, 139, 87, 0.3);
+  display: block;  
   transition: transform 0.5s ease-in-out;
 }
 

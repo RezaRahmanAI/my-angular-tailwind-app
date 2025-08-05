@@ -1,4 +1,8 @@
-<nav class="navbar" [class.hidden]="isHidden" aria-label="Main navigation">
+<nav class="navbar"
+  [class.hidden]="isHidden"
+  [class.transparent]="showTransparent"
+  [class.at-top]="isAtTop"
+  aria-label="Main navigation">
   <div class="site-container navbar-content">
     <div class="nav-left">
       <a routerLink="/home" class="nav-link">Home</a>

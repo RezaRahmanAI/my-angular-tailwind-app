@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SideMenuComponent } from './side-menu.component';
+import { OwnerSpeechComponent } from './owner-speech.component';
 
-describe('SideMenuComponent', () => {
-  let component: SideMenuComponent;
-  let fixture: ComponentFixture<SideMenuComponent>;
+describe('OwnerSpeechComponent', () => {
+  let component: OwnerSpeechComponent;
+  let fixture: ComponentFixture<OwnerSpeechComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideMenuComponent]
+      imports: [OwnerSpeechComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SideMenuComponent);
+    fixture = TestBed.createComponent(OwnerSpeechComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

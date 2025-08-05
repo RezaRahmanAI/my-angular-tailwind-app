@@ -1,6 +1,5 @@
 .testimonial_section {
-  padding: 3rem 1rem;
-  background: #f3f4f6;
+  padding: 3rem 1rem;  
   border-radius: 1rem;
 }
 .heading {
@@ -20,10 +19,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  background: #fff;
+  
   padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0 25px 60px -10px rgba(46,139,87,0.08);
+  
 }
 .image-wrapper {
   flex: 1 1 280px;
@@ -50,7 +49,7 @@
   margin: 0;
 }
 .box {
-  background: #f3f4f6;
+  
   padding: 1rem;
   border-radius: .75rem;
   position: relative;
@@ -73,7 +72,7 @@
   align-items: center;
 }
 .nav button {
-  background: var(--primary);
+  
   color: white;
   border: none;
   padding: .5rem 1rem;

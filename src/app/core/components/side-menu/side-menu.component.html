@@ -1,52 +1,51 @@
-<!-- Side Menu -->
 <div class="side-menu" [class.open]="sideMenuOpen">
   <div class="side-menu-content">
-    <button *ngIf="sideMenuOpen" class="close-btn" (click)="closeMenu()" aria-label="Close menu">
-    &times; <!-- Or use an icon for the close button -->
-  </button>
-    
-    <!-- Main Menu -->
-    <div class="main-menu">
-      <a href="#" class="main-menu-item">Home</a>
-      <a href="#" class="main-menu-item">About Us</a>
-      <a href="#" class="main-menu-item">Projects</a>
-      <a href="#" class="main-menu-item">Contact</a>
-    </div>
-    
-    <!-- Extra Menus -->
+    <button *ngIf="sideMenuOpen" class="close-btn animate-gsap" (click)="closeMenu()" aria-label="Close menu">
+      <i class="ti ti-x animate-gsap-icon"></i>
+    </button>
+
+    <!-- Extra Menus (Left Side) -->
     <div class="extra-menus">
-      <div class="menu-section" (click)="handleMenuClick('properties')">
-        <h3>Properties</h3>
+      <div class="menu-section animate-gsap" (click)="handleMenuClick('properties')">
+        <h3 class="animate-gsap">Properties</h3>
         <div class="menu-options">
-          <div class="menu-option">Residential</div>
-          <div class="menu-option">Commercial</div>
-          <div class="menu-option">Luxury Homes</div>
-          <div class="menu-option">Apartments</div>
+          <div class="menu-option animate-gsap">Residential</div>
+          <div class="menu-option animate-gsap">Commercial</div>
+          <div class="menu-option animate-gsap">Luxury Homes</div>
+          <div class="menu-option animate-gsap">Apartments</div>
         </div>
-        <div class="arrow-icon">↓</div>
+        <div class="arrow-icon animate-gsap"><i class="ti ti-chevron-down animate-gsap-icon"></i></div>
       </div>
-      
-      <div class="menu-section" (click)="handleMenuClick('services')">
-        <h3>Services</h3>
+
+      <div class="menu-section animate-gsap" (click)="handleMenuClick('services')">
+        <h3 class="animate-gsap">Services</h3>
         <div class="menu-options">
-          <div class="menu-option">Property Management</div>
-          <div class="menu-option">Investment Consulting</div>
-          <div class="menu-option">Market Analysis</div>
-          <div class="menu-option">Legal Support</div>
+          <div class="menu-option animate-gsap">Property Management</div>
+          <div class="menu-option animate-gsap">Investment Consulting</div>
+          <div class="menu-option animate-gsap">Market Analysis</div>
+          <div class="menu-option animate-gsap">Legal Support</div>
         </div>
-        <div class="arrow-icon">↓</div>
+        <div class="arrow-icon animate-gsap"><i class="ti ti-chevron-down animate-gsap-icon"></i></div>
       </div>
-      
-      <div class="menu-section" (click)="handleMenuClick('contact')">
-        <h3>Contact</h3>
+
+      <div class="menu-section animate-gsap" (click)="handleMenuClick('contact')">
+        <h3 class="animate-gsap">Contact</h3>
         <div class="menu-options">
-          <div class="menu-option">📞 (555) 123-4567</div>
-          <div class="menu-option">📧 info&#64;prestigerealty.com</div>
-          <div class="menu-option">📍 123 Real Estate Ave</div>
-          <div class="menu-option">🌐 Schedule Visit</div>
+          <div class="menu-option animate-gsap"><i class="ti ti-phone animate-gsap-icon"></i> 01329-638961</div>
+          <div class="menu-option animate-gsap"><i class="ti ti-mail animate-gsap-icon"></i> triconproperties21&#64;gmail.com</div>
+          <div class="menu-option animate-gsap"><i class="ti ti-map-pin animate-gsap-icon"></i> Alokar More, Rajshahi, Bangladesh</div>
+          <div class="menu-option animate-gsap"><i class="ti ti-calendar animate-gsap-icon"></i> Schedule Visit</div>
         </div>
-        <div class="arrow-icon">↓</div>
+        <div class="arrow-icon animate-gsap"><i class="ti ti-chevron-down animate-gsap-icon"></i></div>
       </div>
+    </div>
+
+    <!-- Main Menu (Right Side) -->
+    <div class="main-menu">
+      <a routerLink="/home" class="main-menu-item animate-gsap">Home</a>
+      <a routerLink="/about" class="main-menu-item animate-gsap">About Us</a>
+      <a routerLink="/project" class="main-menu-item animate-gsap">Projects</a>
+      <a routerLink="/contact" class="main-menu-item animate-gsap">Contact</a>
     </div>
   </div>
 </div>
