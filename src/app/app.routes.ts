@@ -11,46 +11,16 @@ import { BlogListComponent } from './core/pages/blog-list/blog-list.component';
 import { BlogDetailsComponent } from './core/pages/blog-details/blog-details.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
-  },
-  {
-    path: 'project',
-    component: ProjectsComponent,
-  },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'project', component: ProjectsComponent },
   { path: 'projectdetails/:id', component: ProjectDetailsComponent },
-  {
-    path: 'contact',
-    component: ContactComponent,
-  },
-  {
-    path: 'gallery',
-    component: GalleryComponent,
-  },
-  {
-    path: 'landowner',
-    component: LandownerComponent,
-  },
-  {
-    path: 'blogs-events',
-    component: BlogsEventsComponent,
-  },
-  {
-    path: 'blog-list',
-    component: BlogListComponent,
-  },
+  { path: 'contact', component: ContactComponent },
+  { path: 'gallery', component: GalleryComponent },
+  { path: 'landowner', component: LandownerComponent },
+  { path: 'blogs-events', component: BlogsEventsComponent },
+  { path: 'blog-list', component: BlogListComponent },
   { path: 'blogDetails/:id', component: BlogDetailsComponent },
-  {
-    path: 'blogs-events',
-    component: BlogsEventsComponent,
-  },
+  { path: 'blogs-events', component: BlogsEventsComponent },
 ];
