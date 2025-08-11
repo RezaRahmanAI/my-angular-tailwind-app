@@ -1,16 +1,90 @@
-<div class="body">
-  <div class="login-container">
-    <h2 class="login-title">Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input formControlName="username" type="text" id="username" class="form-control" placeholder="Enter your username">
+<section
+  class="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center px-6 py-8"
+>
+  <div
+    class="w-full max-w-md bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20 relative"
+    data-animate="login-form"
+  >
+    <h2
+      class="text-3xl font-playfair font-bold text-center text-gray-800 mb-6 dark:text-white"
+    >
+      Login
+    </h2>
+
+    <!-- Error Message -->
+    <div
+      *ngIf="errorMessage"
+      class="bg-red-500 text-white p-4 rounded-lg mb-6 flex justify-between items-center"
+      data-animate="error-message"
+    >
+      {{ errorMessage }}
+      <button
+        class="text-white font-bold"
+        (click)="errorMessage = ''"
+        aria-label="Close error message"
+      >
+        ×
+      </button>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div
+      *ngIf="isLoading"
+      class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-2xl"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"
+      ></div>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="space-y-6" autocomplete="off" novalidate>
+      <div>
+        <label
+          for="email"
+          class="block text-sm font-playfair font-medium text-gray-700 dark:text-gray-300"
+          >Email</label
+        >
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [(ngModel)]="loginModel.email"
+          required
+          autocomplete="email"
+          class="mt-1 block w-full px-4 py-3 rounded-lg bg-white/50 border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-blue-500 dark:focus:ring-blue-500 dark:text-white"
+          placeholder="name@company.com"
+          aria-describedby="emailHelp"
+        />
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input formControlName="password" type="password" id="password" class="form-control" placeholder="Enter your password">
+
+      <div>
+        <label
+          for="password"
+          class="block text-sm font-playfair font-medium text-gray-700 dark:text-gray-300"
+          >Password</label
+        >
+        <input
+          id="password"
+          type="password"
+          name="password"
+          [(ngModel)]="loginModel.password"
+          required
+          autocomplete="current-password"
+          class="mt-1 block w-full px-4 py-3 rounded-lg bg-white/50 border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-blue-500 dark:focus:ring-blue-500 dark:text-white"
+          placeholder="••••••••"
+          aria-describedby="passwordHelp"
+        />
       </div>
-      <button type="submit" class="login-button">Login</button>
+
+      <button
+        type="submit"
+        [disabled]="isLoading"
+        class="w-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-playfair font-semibold py-3 rounded-lg text-white transition-colors duration-300 disabled:opacity-50"
+      >
+        Sign in
+      </button>
     </form>
   </div>
-</div>
+</section>

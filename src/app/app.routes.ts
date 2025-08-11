@@ -9,6 +9,10 @@ import { BlogsEventsComponent } from './core/pages/blogs-events/blogs-events.com
 import { ProjectDetailsComponent } from './core/pages/project-details/project-details.component';
 import { BlogListComponent } from './core/pages/blog-list/blog-list.component';
 import { BlogDetailsComponent } from './core/pages/blog-details/blog-details.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { DashboardComponent } from './core/pages/dashboard/dashboard.component';
+import { AuthGuard } from './core/pipes/auth-guard';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +25,16 @@ export const routes: Routes = [
   { path: 'landowner', component: LandownerComponent },
   { path: 'blogs-events', component: BlogsEventsComponent },
   { path: 'blog-list', component: BlogListComponent },
-  { path: 'blogDetails/:id', component: BlogDetailsComponent },
-  { path: 'blogs-events', component: BlogsEventsComponent },
+  { path: 'blog-details/:id', component: BlogDetailsComponent },
+
+  // Your added routes
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+
+  // Wildcard route for any unknown paths
+  { path: '**', redirectTo: 'login' },
 ];
