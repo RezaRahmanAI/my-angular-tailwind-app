@@ -1,23 +1,27 @@
-<div class="tab_bar sticky top-10 z-20 hidden lg:block">
+<div class="tab-bar sticky top-0 z-20 hidden lg:block">
   <div class="container">
-    <div class="flex items-center gap-10 p-3 bg-gray-200 border border-slate-200 mt-10 shadow-inner rounded-md">
+    <div class="flex justify-between items-center p-3 bg-card-bg rounded-lg shadow-lg w-full">
+
       <button (click)="scrollToSection('atGlance')" [class.active]="activeTab === 'atGlance'">
-        <p class="tab" [class.bg-blue-500]="activeTab === 'atGlance'" [class.text-slate-50]="activeTab === 'atGlance'">At a Glance</p>
+        <span class="tab">At a Glance</span>
       </button>
       <button (click)="scrollToSection('featureAndAmenities')" [class.active]="activeTab === 'featureAndAmenities'">
-        <p class="tab" [class.bg-blue-500]="activeTab === 'featureAndAmenities'" [class.text-slate-50]="activeTab === 'featureAndAmenities'">Feature & Amenities</p>
+        <span class="tab">Features & Amenities</span>
+      </button>
+      <button (click)="scrollToSection('videoPlayer')" [class.active]="activeTab === 'videoPlayer'">
+        <span class="tab">Video</span>
       </button>
       <button (click)="scrollToSection('projectGallery')" [class.active]="activeTab === 'projectGallery'">
-        <p class="tab" [class.bg-blue-500]="activeTab === 'projectGallery'" [class.text-slate-50]="activeTab === 'projectGallery'">Gallery</p>
+        <span class="tab">Gallery</span>
       </button>
       <button (click)="scrollToSection('locationMap')" [class.active]="activeTab === 'locationMap'">
-        <p class="tab" [class.bg-blue-500]="activeTab === 'locationMap'" [class.text-slate-50]="activeTab === 'locationMap'">Location Map</p>
+        <span class="tab">Location Map</span>
       </button>
       <button (click)="scrollToSection('relatedProjects')" [class.active]="activeTab === 'relatedProjects'">
-        <p class="tab" [class.bg-blue-500]="activeTab === 'relatedProjects'" [class.text-slate-50]="activeTab === 'relatedProjects'">Related Projects</p>
+        <span class="tab">Related Projects</span>
       </button>
       <button (click)="scrollToSection('contacting')" [class.active]="activeTab === 'contacting'">
-        <p class="tab" [class.bg-blue-500]="activeTab === 'contacting'" [class.text-slate-50]="activeTab === 'contacting'">Contacting</p>
+        <span class="tab">Contact</span>
       </button>
     </div>
   </div>

@@ -10,14 +10,17 @@ import { MarqueeComponent } from './marquee/marquee.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
 import { AtGlanceComponent } from './at-glance/at-glance.component';
 import { FeatureAmenitiesComponent } from './feature-amenities/feature-amenities.component';
+import { VideoPlayerComponent } from './video-player/video-player.component';
 import { ProjectGalleryComponent } from './project-gallery/project-gallery.component';
 import { LocationMapComponent } from './location-map/location-map.component';
 import { RelatedProjectsComponent } from './related-projects/related-projects.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
+import { environment } from '../../../environments/environment';
 
 interface Project {
   id: number | string;
+  name?: string;
   address?: string;
   landArea?: string;
   height?: string;
@@ -28,6 +31,7 @@ interface Project {
   sizeOfEachApartment?: string;
   contentType?: 'Image' | 'Video';
   content?: string;
+  youtube?: string; // Added for YouTube video
   offerTile?: string;
   offerDateTime?: string;
   latitude?: string;
@@ -46,7 +50,7 @@ interface GalleryItem {
 }
 
 interface RelatedProject {
-  id: number | string;
+  id: string;
   name: string;
   category: string;
   type: string;
@@ -67,6 +71,7 @@ interface RelatedProject {
     TabBarComponent,
     AtGlanceComponent,
     FeatureAmenitiesComponent,
+    VideoPlayerComponent,
     ProjectGalleryComponent,
     LocationMapComponent,
     RelatedProjectsComponent,
@@ -76,7 +81,7 @@ interface RelatedProject {
   styleUrls: ['./project-details.component.css'],
 })
 export class ProjectDetailsComponent implements OnInit, OnDestroy {
-  baseUrl = 'https://demo1.triconproperty.com';
+  baseUrl = environment.baseUrl;
   state = {
     list: [] as Feature[],
     gallery: [] as GalleryItem[],
@@ -196,7 +201,10 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     this.http
       .get<RelatedProject[]>(`${this.baseUrl}/api/website/getprojects`)
       .subscribe({
-        next: (data) => (this.state.projects = data),
+        next: (data) => {
+          this.state.projects = data;
+          console.log('Related projects fetched:', this.state.projects);
+        },
         error: (err) => console.error('Error fetching projects:', err),
       });
   }
@@ -240,7 +248,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   onImageError(event: Event): void {
     const img = event.target as HTMLImageElement;
     if (img.src !== '/images/fallback.png') {
-      img.alt = 'Nothing to show';
+      img.src = '/images/fallback.png';
     }
   }
 }

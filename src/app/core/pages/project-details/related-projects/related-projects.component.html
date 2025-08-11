@@ -3,7 +3,7 @@
     <h1 class="text-center">Related Projects</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
       <div *ngFor="let item of projects" class="project_card">
-        <a [routerLink]="['/projectdetails', item.id]">
+        <a (click)="onProjectSelect(item.id)">
           <div class="project_card_img">
             <img
               class="w-full rounded-t-2xl"

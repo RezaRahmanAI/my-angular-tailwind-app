@@ -1,8 +1,6 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SafeUrlPipe } from '../../../pipes/safe-url.pipe';
 
 @Component({
@@ -12,25 +10,7 @@ import { SafeUrlPipe } from '../../../pipes/safe-url.pipe';
   templateUrl: './location-map.component.html',
   styleUrls: ['./location-map.component.css'],
 })
-export class LocationMapComponent implements AfterViewInit {
+export class LocationMapComponent {
   @Input() latitude?: string;
   @Input() longitude?: string;
-
-  constructor() {
-    gsap.registerPlugin(ScrollTrigger);
-  }
-
-  ngAfterViewInit(): void {
-    gsap.from('.project_location', {
-      opacity: 0,
-      y: 20,
-      duration: 1.2,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: '.project_location',
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
-    });
-  }
 }

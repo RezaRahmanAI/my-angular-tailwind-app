@@ -1,9 +1,4 @@
-:host {
-  display: block;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
+.relative {
+  position: relative;  
+  background-color: var(--muted-bg);
 }
