@@ -31,3 +31,16 @@ export interface Slide {
 export interface Offer {
   picture: string;
 }
+
+export interface Team {
+  id: string;
+  name: string;
+  designation: string;
+  description: string;
+  facebook: string;
+  twitter: string;
+  linkedin: string;
+  image: string;
+  isActive: boolean;
+  order: number;
+}

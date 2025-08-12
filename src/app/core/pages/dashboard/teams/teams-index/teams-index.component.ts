@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../../../environments/environment';
 import { TeamFormComponent } from '../team-form/team-form.component';
+import { environment } from '../../../../../environments/environment';
 import { CommonModule } from '@angular/common';
 
 interface Team {
@@ -44,7 +44,9 @@ export class TeamsIndexComponent implements OnInit {
         this.teams = data;
       },
       error: (error) => {
-        this.toastr.error('Failed to fetch teams');
+        this.toastr.error(
+          'Failed to fetch teams: ' + (error.message || 'Unknown error')
+        );
         console.error(error);
       },
     });
@@ -76,18 +78,27 @@ export class TeamsIndexComponent implements OnInit {
     this.http
       .post(
         `${this.apiBaseUrl}/api/team/itemactiveinactive?id=${id}&value=${isActive}`,
-        {}
+        {},
+        { responseType: 'text' }
       )
       .subscribe({
-        next: (response: any) => {
-          this.toastr.success(
-            response.message ||
-              `Team ${isActive ? 'activated' : 'deactivated'} successfully`
-          );
-          this.fetchTeams();
+        next: (response: string) => {
+          if (response === 'Data not found.') {
+            this.toastr.error(response);
+          } else {
+            this.toastr.success(
+              response ||
+                `Team ${isActive ? 'activated' : 'deactivated'} successfully`
+            );
+            this.fetchTeams();
+          }
         },
         error: (error) => {
-          this.toastr.error('Failed to update team status');
+          this.toastr.error(
+            `Failed to ${isActive ? 'activate' : 'deactivate'} team: ${
+              error.message || 'Unknown error'
+            }`
+          );
           console.error(error);
         },
       });
@@ -95,14 +106,20 @@ export class TeamsIndexComponent implements OnInit {
 
   deleteTeam(id: string) {
     this.http
-      .post(`${this.apiBaseUrl}/api/team/delete?id=${id}`, {})
+      .post(
+        `${this.apiBaseUrl}/api/team/delete?id=${id}`,
+        {},
+        { responseType: 'text' }
+      )
       .subscribe({
-        next: (response: any) => {
-          this.toastr.success(response.message || 'Team deleted successfully');
+        next: (response: string) => {
+          this.toastr.success(response || 'Team deleted successfully');
           this.fetchTeams();
         },
         error: (error) => {
-          this.toastr.error('Failed to delete team');
+          this.toastr.error(
+            `Failed to delete team: ${error.message || 'Unknown error'}`
+          );
           console.error(error);
         },
       });
