@@ -68,8 +68,8 @@ export class TeamFormComponent implements OnInit {
     formData.append('designation', this._team.designation || '');
     formData.append('description', this._team.description || '');
     formData.append('facebook', this._team.facebook || '');
-    formData.append('twitter', this._team.twitter || '');
-    formData.append('linkedin', this._team.linkedin || '');
+    formData.append('twiter', this._team.twitter || ''); // Match API's 'twiter' field
+    formData.append('linkedIn', this._team.linkedin || '');
     formData.append('order', this._team.order.toString());
     if (this.selectedFile) {
       formData.append('image', this.selectedFile);
@@ -80,23 +80,27 @@ export class TeamFormComponent implements OnInit {
 
     const endpoint =
       this.mode === 'create' ? '/api/team/create' : '/api/team/edit';
-    this.http.post(`${this.apiBaseUrl}${endpoint}`, formData).subscribe({
-      next: (response: any) => {
-        this.toastr.success(
-          response.message ||
-            `Team ${
-              this.mode === 'create' ? 'created' : 'updated'
-            } successfully`
-        );
-        this.saved.emit();
-      },
-      error: (error) => {
-        this.toastr.error(
-          `Failed to ${this.mode === 'create' ? 'create' : 'update'} team`
-        );
-        console.error(error);
-      },
-    });
+    this.http
+      .post(`${this.apiBaseUrl}${endpoint}`, formData, { responseType: 'text' })
+      .subscribe({
+        next: (response: string) => {
+          this.toastr.success(
+            response ||
+              `Team ${
+                this.mode === 'create' ? 'created' : 'updated'
+              } successfully`
+          );
+          this.saved.emit();
+        },
+        error: (error) => {
+          this.toastr.error(
+            `Failed to ${this.mode === 'create' ? 'create' : 'update'} team: ${
+              error.message || 'Unknown error'
+            }`
+          );
+          console.error(error);
+        },
+      });
   }
 
   constructor(private http: HttpClient, private toastr: ToastrService) {}
