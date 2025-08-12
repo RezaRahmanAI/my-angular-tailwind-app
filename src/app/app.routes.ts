@@ -12,7 +12,7 @@ import { BlogDetailsComponent } from './core/pages/blog-details/blog-details.com
 import { LoginComponent } from './core/components/login/login.component';
 import { DashboardComponent } from './core/pages/dashboard/dashboard.component';
 import { AuthGuard } from './core/pipes/auth-guard';
-
+import { TeamsComponent } from './core/pages/dashboard/teams/teams.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,15 +26,15 @@ export const routes: Routes = [
   { path: 'blogs-events', component: BlogsEventsComponent },
   { path: 'blog-list', component: BlogListComponent },
   { path: 'blog-details/:id', component: BlogDetailsComponent },
-
-  // Your added routes
   { path: 'login', component: LoginComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
-
-  // Wildcard route for any unknown paths
-  { path: '**', redirectTo: 'login' },
+  {
+    path: 'dashboard/teams',
+    component: TeamsComponent,
+    canActivate: [AuthGuard],
+  },
 ];

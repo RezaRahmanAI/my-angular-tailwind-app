@@ -1,6 +1,6 @@
 <!-- src/app/app.component.html -->
 
-<app-navbar (toggleMenu)="onToggleMenu()" [sideMenuOpen]="sideMenuOpen"></app-navbar>
+<app-navbar *ngIf="!isDashboardRoute" (toggleMenu)="onToggleMenu()" [sideMenuOpen]="sideMenuOpen"></app-navbar>
 <app-side-menu [sideMenuOpen]="sideMenuOpen" (closeMenuEvent)="onCloseMenu()"></app-side-menu>
 <app-floating-social />
 <router-outlet />
