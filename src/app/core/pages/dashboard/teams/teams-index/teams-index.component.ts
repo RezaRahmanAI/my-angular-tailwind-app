@@ -1,27 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
 import { TeamFormComponent } from '../team-form/team-form.component';
-import { environment } from '../../../../../environments/environment';
+import { Team } from '../../../../models/model';
+import { TeamService } from '../../../../services/team.service';
 import { CommonModule } from '@angular/common';
-
-interface Team {
-  id: string;
-  name: string;
-  designation: string;
-  description: string;
-  facebook: string;
-  twitter: string;
-  linkedin: string;
-  image: string;
-  isActive: boolean;
-  order: number;
-}
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-teams-index',
   standalone: true,
-  imports: [CommonModule,TeamFormComponent],
+  imports: [TeamFormComponent, CommonModule],
   templateUrl: './teams-index.component.html',
   styleUrls: ['./teams-index.component.css'],
 })
@@ -29,22 +16,22 @@ export class TeamsIndexComponent implements OnInit {
   teams: Team[] = [];
   showFormModal = false;
   selectedTeam: Team | null = null;
-  formMode: 'create' | 'edit' = 'create';
   apiBaseUrl = environment.baseUrl;
+  formMode: 'create' | 'edit' = 'create';
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private teamService: TeamService) {}
 
   ngOnInit() {
     this.fetchTeams();
   }
 
   fetchTeams() {
-    this.http.get<Team[]>(`${this.apiBaseUrl}/api/team`).subscribe({
+    this.teamService.getTeams().subscribe({
       next: (data) => {
         this.teams = data;
       },
       error: (error) => {
-        this.toastr.error(
+        this.teamService.showError(
           'Failed to fetch teams: ' + (error.message || 'Unknown error')
         );
         console.error(error);
@@ -75,53 +62,41 @@ export class TeamsIndexComponent implements OnInit {
   }
 
   toggleActiveStatus(id: string, isActive: boolean) {
-    this.http
-      .post(
-        `${this.apiBaseUrl}/api/team/itemactiveinactive?id=${id}&value=${isActive}`,
-        {},
-        { responseType: 'text' }
-      )
-      .subscribe({
-        next: (response: string) => {
-          if (response === 'Data not found.') {
-            this.toastr.error(response);
-          } else {
-            this.toastr.success(
-              response ||
-                `Team ${isActive ? 'activated' : 'deactivated'} successfully`
-            );
-            this.fetchTeams();
-          }
-        },
-        error: (error) => {
-          this.toastr.error(
-            `Failed to ${isActive ? 'activate' : 'deactivate'} team: ${
-              error.message || 'Unknown error'
-            }`
+    this.teamService.toggleActiveStatus(id, isActive).subscribe({
+      next: (response) => {
+        if (response === 'Data not found.') {
+          this.teamService.showError(response);
+        } else {
+          this.teamService.showSuccess(
+            response ||
+              `Team ${isActive ? 'activated' : 'deactivated'} successfully`
           );
-          console.error(error);
-        },
-      });
+          this.fetchTeams();
+        }
+      },
+      error: (error) => {
+        this.teamService.showError(
+          `Failed to ${isActive ? 'activate' : 'deactivate'} team: ${
+            error.message || 'Unknown error'
+          }`
+        );
+        console.error(error);
+      },
+    });
   }
 
   deleteTeam(id: string) {
-    this.http
-      .post(
-        `${this.apiBaseUrl}/api/team/delete?id=${id}`,
-        {},
-        { responseType: 'text' }
-      )
-      .subscribe({
-        next: (response: string) => {
-          this.toastr.success(response || 'Team deleted successfully');
-          this.fetchTeams();
-        },
-        error: (error) => {
-          this.toastr.error(
-            `Failed to delete team: ${error.message || 'Unknown error'}`
-          );
-          console.error(error);
-        },
-      });
+    this.teamService.deleteTeam(id).subscribe({
+      next: (response) => {
+        this.teamService.showSuccess(response || 'Team deleted successfully');
+        this.fetchTeams();
+      },
+      error: (error) => {
+        this.teamService.showError(
+          `Failed to delete team: ${error.message || 'Unknown error'}`
+        );
+        console.error(error);
+      },
+    });
   }
 }

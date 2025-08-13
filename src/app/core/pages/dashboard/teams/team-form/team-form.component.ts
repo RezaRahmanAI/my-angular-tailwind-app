@@ -1,39 +1,17 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../../../environments/environment';
-
-interface Team {
-  id: string;
-  name: string;
-  designation: string;
-  description: string;
-  facebook: string;
-  twitter: string;
-  linkedin: string;
-  image: string;
-  isActive: boolean;
-  order: number;
-}
+import { Team } from '../../../../models/model';
+import { TeamService } from '../../../../services/team.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-team-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './team-form.component.html',
   styleUrls: ['./team-form.component.css'],
 })
 export class TeamFormComponent implements OnInit {
-  @Input() set team(value: Team | null) {
-    this._team = value ? { ...value } : { ...this.defaultTeam };
-  }
-  @Input() mode: 'create' | 'edit' = 'create';
-  @Output() close = new EventEmitter<void>();
-  @Output() saved = new EventEmitter<void>();
-  selectedFile: File | null = null;
-  apiBaseUrl = environment.baseUrl;
-
   private defaultTeam: Team = {
     id: '',
     name: '',
@@ -46,8 +24,15 @@ export class TeamFormComponent implements OnInit {
     isActive: true,
     order: 0,
   };
-
   _team: Team = this.defaultTeam;
+
+  @Input() set team(value: Team | null) {
+    this._team = value ? { ...value } : { ...this.defaultTeam };
+  }
+  @Input() mode: 'create' | 'edit' = 'create';
+  @Output() close = new EventEmitter<void>();
+  @Output() saved = new EventEmitter<void>();
+  selectedFile: File | null = null;
 
   ngOnInit() {
     if (!this._team) {
@@ -78,30 +63,30 @@ export class TeamFormComponent implements OnInit {
       formData.append('id', this._team.id || '');
     }
 
-    const endpoint =
-      this.mode === 'create' ? '/api/team/create' : '/api/team/edit';
-    this.http
-      .post(`${this.apiBaseUrl}${endpoint}`, formData, { responseType: 'text' })
-      .subscribe({
-        next: (response: string) => {
-          this.toastr.success(
-            response ||
-              `Team ${
-                this.mode === 'create' ? 'created' : 'updated'
-              } successfully`
-          );
-          this.saved.emit();
-        },
-        error: (error) => {
-          this.toastr.error(
-            `Failed to ${this.mode === 'create' ? 'create' : 'update'} team: ${
-              error.message || 'Unknown error'
-            }`
-          );
-          console.error(error);
-        },
-      });
+    const serviceMethod =
+      this.mode === 'create'
+        ? this.teamService.createTeam(formData)
+        : this.teamService.editTeam(formData);
+    serviceMethod.subscribe({
+      next: (response) => {
+        this.teamService.showSuccess(
+          response ||
+            `Team ${
+              this.mode === 'create' ? 'created' : 'updated'
+            } successfully`
+        );
+        this.saved.emit();
+      },
+      error: (error) => {
+        this.teamService.showError(
+          `Failed to ${this.mode === 'create' ? 'create' : 'update'} team: ${
+            error.message || 'Unknown error'
+          }`
+        );
+        console.error(error);
+      },
+    });
   }
 
-  constructor(private http: HttpClient, private toastr: ToastrService) {}
+  constructor(private teamService: TeamService) {}
 }
