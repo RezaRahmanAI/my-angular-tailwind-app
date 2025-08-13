@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { NavbarComponent } from './core/shared/navbar/navbar.component';
-import { FooterComponent } from './core/shared/footer/footer.component';
 import { SideMenuComponent } from './core/components/side-menu/side-menu.component';
 import { FloatingSocialComponent } from './core/components/floating-social/floating-social.component';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './core/components/navbar/navbar.component';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 @Component({
   selector: 'app-root',

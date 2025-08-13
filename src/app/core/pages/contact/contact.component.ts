@@ -2,7 +2,6 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { RevealDirective } from '../../shared/directives/reveal.directive';
 import { ContactHeroComponent } from "./contact-hero/contact-hero.component";
 import { ContactInfoMapComponent } from "./contact-info-map/contact-info-map.component";
 import { ContactFromComponent } from "./contact-from/contact-from.component";

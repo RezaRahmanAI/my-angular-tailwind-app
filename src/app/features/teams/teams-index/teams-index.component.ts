@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamFormComponent } from '../team-form/team-form.component';
-import { Team } from '../../../../models/model';
-import { TeamService } from '../../../../services/team.service';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../../../../environments/environment';
+import { Team } from '../../../core/models/model';
+import { environment } from '../../../environments/environment';
+import { TeamService } from '../../../core/services/team.service';
+
 
 @Component({
   selector: 'app-teams-index',
