@@ -1,16 +1,42 @@
 
-tr {
-  transition: background-color 0.2s ease;
+/* Ensure table container doesn't overflow the parent */
+:host {
+  display: block;
 }
 
-th, td {
-  vertical-align: middle;
+/* Custom scrollbar for table */
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #0891b2 #e5e7eb;
 }
 
-img, video {
-  transition: transform 0.2s ease;
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
 }
 
-img:hover, video:hover {
-  transform: scale(1.05);
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #0891b2;
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #0e7490;
+}
+
+/* Adjust table for responsiveness */
+table {
+  min-width: 800px; /* Reduced minimum width for compact layout */
+}
+
+/* Ensure content fits within dashboard */
+@media (min-width: 1024px) {
+  .container {
+    max-width: calc(100vw - 256px); /* Adjust for sidebar width */
+    margin-left: 256px; /* Align content with sidebar */
+  }
 }
