@@ -20,8 +20,9 @@ import { TestimonialsIndexComponent } from './features/testimonials/testimonials
 import { OffersIndexComponent } from './features/offers/offers-index/offers-index.component';
 import { AboutUsIndexComponent } from './features/about-us/about-us-index/about-us-index.component';
 import { ProjectsIndexComponent } from './features/projects/projects-index/projects-index.component';
-import { ProjectsGalleryComponent } from './features/projects/projects-gallery/projects-gallery.component';
-import { ProjectsFeaturesComponent } from './features/projects/projects-features/projects-features.component';
+import { ProjectEditComponent } from './features/projects/project-edit/project-edit.component';
+import { ProjectFeaturesComponent } from './features/projects/project-features/project-features.component';
+import { ProjectGalleryComponent } from './features/projects/project-gallery/project-gallery.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -51,10 +52,11 @@ export const routes: Routes = [
         path: 'projects',
         children: [
           { path: '', component: ProjectsIndexComponent },
-          { path: ':id/gallery', component: ProjectsGalleryComponent },
-          { path: ':id/features', component: ProjectsFeaturesComponent }
-        ]
+          { path: ':id/edit', component: ProjectEditComponent },
+          { path: ':id/features', component: ProjectFeaturesComponent },
+          { path: ':id/gallery', component: ProjectGalleryComponent },
+        ],
       },
-    ]
+    ],
   },
 ];

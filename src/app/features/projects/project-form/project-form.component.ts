@@ -1,27 +1,32 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Project } from '../models/project.model';
-import { ProjectsService } from '../services/projects.service';
 import { CommonModule } from '@angular/common';
+import { ProjectService } from '../services/project.service';
 
 @Component({
-  selector: 'app-projects-form',
+  selector: 'app-project-form',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './projects-form.component.html',
-  styleUrls: ['./projects-form.component.css'],
+  templateUrl: './project-form.component.html',
+  styleUrls: ['./project-form.component.css'],
 })
-export class ProjectsFormComponent {
+export class ProjectFormComponent {
   @Input() set project(value: Project | null) {
     this._project = value ? { ...value } : { ...this.defaultProject };
     this.contentType = this._project.contentType || '';
+    if (this._project.offerDateTime) {
+      this._project.offerDateTime = this.formatDateForInput(
+        this._project.offerDateTime
+      );
+    }
   }
   @Input() mode: 'create' | 'edit' = 'create';
   @Output() close = new EventEmitter<void>();
   @Output() saved = new EventEmitter<void>();
-  contentType: string = '';
   selectedThumbnail: File | null = null;
   selectedContent: File | null = null;
+  contentType: string = '';
 
   private defaultProject: Project = {
     id: '',
@@ -31,9 +36,9 @@ export class ProjectsFormComponent {
     thumbnail: '',
     category: '',
     type: '',
-    contentType: '',
     content: '',
-    offerTile: '',
+    contentType: '',
+    offerTitle: '',
     offerDateTime: '',
     isActive: true,
     landArea: '',
@@ -46,9 +51,10 @@ export class ProjectsFormComponent {
     latitude: '',
     longitude: '',
   };
+
   _project: Project = this.defaultProject;
 
-  constructor(private projectsService: ProjectsService) {}
+  constructor(private projectService: ProjectService) {}
 
   onThumbnailChange(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -64,18 +70,12 @@ export class ProjectsFormComponent {
     }
   }
 
+  formatDateForInput(date: string): string {
+    const d = new Date(date);
+    return d.toISOString().slice(0, 16);
+  }
+
   saveProject() {
-    if (
-      !this._project.name ||
-      !this._project.category ||
-      !this._project.type ||
-      !this._project.offerDateTime
-    ) {
-      this.projectsService.showError(
-        'Name, Category, Type, and Offer Date are required'
-      );
-      return;
-    }
     const formData = new FormData();
     formData.append('name', this._project.name || '');
     formData.append('description', this._project.description || '');
@@ -83,7 +83,7 @@ export class ProjectsFormComponent {
     formData.append('category', this._project.category || '');
     formData.append('type', this._project.type || '');
     formData.append('contentType', this.contentType || '');
-    formData.append('offerTile', this._project.offerTile || '');
+    formData.append('offerTitle', this._project.offerTitle || '');
     formData.append('offerDateTime', this._project.offerDateTime || '');
     formData.append('landArea', this._project.landArea || '');
     formData.append('builtUpArea', this._project.builtUpArea || '');
@@ -115,11 +115,11 @@ export class ProjectsFormComponent {
 
     const serviceMethod =
       this.mode === 'create'
-        ? this.projectsService.createProject(formData)
-        : this.projectsService.editProject(formData);
+        ? this.projectService.createProject(formData)
+        : this.projectService.editProject(formData);
     serviceMethod.subscribe({
       next: (response) => {
-        this.projectsService.showSuccess(
+        this.projectService.showSuccess(
           response ||
             `Project ${
               this.mode === 'create' ? 'created' : 'updated'
@@ -128,7 +128,7 @@ export class ProjectsFormComponent {
         this.saved.emit();
       },
       error: (error) => {
-        this.projectsService.showError(
+        this.projectService.showError(
           `Failed to ${this.mode === 'create' ? 'create' : 'update'} Project: ${
             error.message || 'Unknown error'
           }`

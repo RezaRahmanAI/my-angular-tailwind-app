@@ -6,9 +6,9 @@ export interface Project {
   thumbnail: string;
   category: string;
   type: string;
-  contentType: string;
   content: string;
-  offerTile: string;
+  contentType: string;
+  offerTitle: string;
   offerDateTime: string;
   isActive: boolean;
   landArea: string;
@@ -21,4 +21,3 @@ export interface Project {
   latitude: string;
   longitude: string;
 }
-  

@@ -1,0 +1,16 @@
+
+tr {
+  transition: background-color 0.2s ease;
+}
+
+th, td {
+  vertical-align: middle;
+}
+
+img, video {
+  transition: transform 0.2s ease;
+}
+
+img:hover, video:hover {
+  transform: scale(1.05);
+}
