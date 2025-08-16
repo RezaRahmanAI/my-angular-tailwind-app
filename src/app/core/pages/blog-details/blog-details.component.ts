@@ -9,6 +9,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-blog-details',
@@ -40,21 +44,48 @@ export class BlogDetailsComponent implements OnInit {
     this.getBlogs();
   }
 
+  ngAfterViewInit() {
+    this.animateOnScroll();
+  }
+
   getBlog() {
     this.http
       .get(`${this.baseURL}/api/website/getsingleblog?blogId=${this.blogId}`)
-      .subscribe((res: any) => {
-        this.data.set(res);
+      .subscribe({
+        next: (res: any) => {
+          console.log('Blog API Response:', res); // Debug response
+          this.data.set({
+            ...res,
+            image: res.image
+              ? `${this.baseURL}/api/attachment/get/${res.image}`
+              : '/images/fallback.png',
+          });
+          this.startCountdown();
+        },
+        error: (error) => {
+          console.error('Error fetching blog:', error);
+        },
       });
   }
 
   getBlogs() {
-    this.http
-      .get(`${this.baseURL}/api/website/getblogs`)
-      .subscribe((res: any) => {
-        this.list.set(res);
+    this.http.get(`${this.baseURL}/api/website/getblogs`).subscribe({
+      next: (res: any) => {
+        this.list.set(
+          res.map((item: any) => ({
+            ...item,
+            image: item.image
+              ? `${this.baseURL}/api/attachment/get/${item.image}`
+              : '/images/fallback.png',
+          }))
+        );
         this.startCountdown();
-      });
+        setTimeout(() => this.animateOnScroll(), 100);
+      },
+      error: (error) => {
+        console.error('Error fetching blogs:', error);
+      },
+    });
   }
 
   startCountdown() {
@@ -110,5 +141,33 @@ export class BlogDetailsComponent implements OnInit {
 
   pad(n: number) {
     return String(n).padStart(2, '0');
+  }
+
+  onImageError(event: Event, fallback = '/images/fallback.png') {
+    const img = event.target as HTMLImageElement;
+    if (img && img.src !== fallback) {
+      img.src = fallback;
+    }
+  }
+
+  private animateOnScroll() {
+    const sections = this.el.nativeElement.querySelectorAll('[data-animate]');
+    sections.forEach((section: HTMLElement) => {
+      gsap.fromTo(
+        section,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    });
   }
 }

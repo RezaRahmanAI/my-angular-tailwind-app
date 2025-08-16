@@ -35,7 +35,7 @@ export const routes: Routes = [
   { path: 'landowner', component: LandownerComponent },
   { path: 'blogs-events', component: BlogsEventsComponent },
   { path: 'blog-list', component: BlogListComponent },
-  { path: 'blog-details/:id', component: BlogDetailsComponent },
+  { path: 'blogDetails/:id', component: BlogDetailsComponent },
   { path: 'login', component: LoginComponent },
   {
     path: 'dashboard',
