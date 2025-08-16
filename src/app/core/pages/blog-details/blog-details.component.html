@@ -47,8 +47,8 @@
   >
     <h2 class="text-3xl font-bold text-slate-900 mb-4">{{ data()?.title }}</h2>
     <p class="text-slate-600 text-sm mb-6">
-      {{ data()?.createdAt | date: 'mediumDate' }} ·
-      {{ data()?.author || 'Unknown Author' }}
+      {{ data()?.createdAt | date: 'mediumDate' }} 
+      <!-- {{ data()?.author || 'Unknown Author' }} -->
     </p>
     <img
       *ngIf="data()?.image"
