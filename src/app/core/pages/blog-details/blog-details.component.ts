@@ -77,6 +77,9 @@ export class BlogDetailsComponent implements OnInit {
             image: item.image
               ? `${this.baseURL}/api/attachment/get/${item.image}`
               : '/images/fallback.png',
+            picture: item.picture
+              ? `${this.baseURL}/api/attachment/get/${item.picture}`
+              : '/images/fallback.png',
           }))
         );
         this.startCountdown();
