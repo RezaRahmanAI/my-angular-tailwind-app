@@ -46,7 +46,27 @@ export class BlogDetailsComponent implements OnInit {
 
   ngAfterViewInit() {
     this.animateOnScroll();
+
+    const blogRow = this.el.nativeElement.querySelector('#blogRow');
+    const image = this.el.nativeElement.querySelector('#blogImage');
+
+    if (blogRow && image) {
+      const updateHeight = () => {
+        blogRow.style.minHeight = image.offsetHeight + 'px';
+      };
+
+      // Initial set
+      updateHeight();
+
+      // Watch for image resize (responsive)
+      const observer = new ResizeObserver(() => updateHeight());
+      observer.observe(image);
+
+      // Also adjust on window resize
+      window.addEventListener('resize', updateHeight);
+    }
   }
+
 
   getBlog() {
     this.http
