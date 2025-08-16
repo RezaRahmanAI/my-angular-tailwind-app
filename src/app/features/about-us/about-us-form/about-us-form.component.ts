@@ -35,7 +35,7 @@ export class AboutUsFormComponent {
     ownerImage: '',
   };
 
-  _aboutUs: AboutUs = this.defaultAboutUs;
+  _aboutUs: AboutUs = { ...this.defaultAboutUs };
 
   constructor(private aboutUsService: AboutUsService) {}
 
@@ -69,7 +69,7 @@ export class AboutUsFormComponent {
     formData.append('ownerDesignation', this._aboutUs.ownerDesignation || '');
     formData.append('ownerSpeech', this._aboutUs.ownerSpeech || '');
     if (this.selectedOwnerImage) {
-      formData.append('image', this.selectedOwnerImage);
+      formData.append('ownerImage', this.selectedOwnerImage);
     }
     if (this.selectedVisionImage) {
       formData.append('visionImage', this.selectedVisionImage);
@@ -80,6 +80,11 @@ export class AboutUsFormComponent {
     if (this.mode === 'edit') {
       formData.append('id', this._aboutUs.id || '');
     }
+
+    console.log('FormData contents:');
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
 
     const serviceMethod =
       this.mode === 'create'
@@ -101,7 +106,7 @@ export class AboutUsFormComponent {
             this.mode === 'create' ? 'create' : 'update'
           } About Us: ${error.message || 'Unknown error'}`
         );
-        console.error(error);
+        console.error('API error:', error);
       },
     });
   }

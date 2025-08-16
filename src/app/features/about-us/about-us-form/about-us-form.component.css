@@ -1,6 +1,10 @@
 
+
 :host {
   display: block;
+}
+
+.animate-slideIn {
   animation: slideIn 0.3s ease-out;
 }
 
@@ -13,11 +17,6 @@
     transform: translateY(0);
     opacity: 1;
   }
-}
-
-/* Ensure modal content is scrollable */
-.max-h-\[90vh\] {
-  max-height: 90vh;
 }
 
 /* Custom scrollbar for modal */
