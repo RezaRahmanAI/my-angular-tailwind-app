@@ -9,7 +9,7 @@
 
 div.sticky {
   position: sticky;
-  top: 0;
+  top: 50px;
   font-size: 20px;
 }
 
