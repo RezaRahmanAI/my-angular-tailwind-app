@@ -7,6 +7,12 @@ import { OwnerSpeechComponent } from './owner-speech/owner-speech.component';
 import { MissionVisionComponent } from './mission-vision/mission-vision.component';
 import { TeamComponent } from './team/team.component';
 import { TeamModalComponent } from './team-modal/team-modal.component';
+import { environment } from '../../../environments/environment';
+import { AboutUsService } from '../../../features/about-us/services/about-us.service';
+import { TeamService } from '../../services/team.service';
+import { AboutUs } from '../../../features/about-us/models/about-us.model';
+import { Team } from '../../models/model';
+
 
 interface TeamMember {
   id: number;
@@ -36,7 +42,7 @@ interface TeamMember {
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit {
-  baseUrl = 'https://dummy.com';
+  baseUrl = environment.baseUrl; // Use environment baseUrl
 
   state: {
     about: {
@@ -54,50 +60,97 @@ export class AboutComponent implements OnInit {
     selectedTeamMember: TeamMember | null;
   } = {
     about: {
-      history:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
-      ownerName: 'John Smith',
-      ownerDesignation: 'CEO & Founder',
-      ownerSpeech:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
-      ownerImage: '/images/employee/employee-1.jpg',
-      mission:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
-      missionImage: '/images/employee/employee-1.jpg',
-      vision:
-        'At first, I would like to thank God, the almighty for allowing us to serve the Dhaka community with honesty, integrity, and hard work...',
-      visionImage: '/images/employee/employee-1.jpg',
+      history: '',
+      ownerName: '',
+      ownerDesignation: '',
+      ownerSpeech: '',
+      ownerImage: '',
+      mission: '',
+      missionImage: '',
+      vision: '',
+      visionImage: '',
     },
-    team: [
-      {
-        id: 1,
-        name: 'Alice Johnson',
-        designation: 'Project Manager',
-        image: '/images/employee/employee-1.jpg',
-        description:
-          'Experienced in managing large-scale construction projects.',
-        facebook: 'https://facebook.com/alice',
-        twitter: 'https://twitter.com/alice',
-        linkedin: 'https://linkedin.com/in/alice',
-      },
-      {
-        id: 2,
-        name: 'Bob Williams',
-        designation: 'Architect',
-        image: '/images/employee/employee-2.jpg',
-        description: 'Specializes in modern architectural designs.',
-        facebook: 'https://facebook.com/bob',
-        twitter: 'https://twitter.com/bob',
-        linkedin: 'https://linkedin.com/in/bob',
-      },
-    ],
+    team: [],
     selectedTeamMember: null,
+  };
+
+  expandedSections: { [key: string]: boolean } = {
+    history: true, // Open by default
+    missionVision: false,
+    ownerSpeech: false,
+    team: false,
   };
 
   isModalVisible = false;
 
+  constructor(
+    private aboutUsService: AboutUsService,
+    private teamService: TeamService
+  ) {}
+
   ngOnInit(): void {
-    // Placeholder for future API initialization
+    this.fetchAboutData();
+    this.fetchTeamMembers();
+  }
+
+  fetchAboutData(): void {
+    this.aboutUsService.getAboutUs().subscribe({
+      next: (data: AboutUs[]) => {
+        const about = data[0] || this.state.about; // Use first item or fallback to empty
+        this.state.about = {
+          history: about.history || '',
+          ownerName: about.ownerName || '',
+          ownerDesignation: about.ownerDesignation || '',
+          ownerSpeech: about.ownerSpeech || '',
+          ownerImage: about.ownerImage
+            ? `${this.baseUrl}/api/attachment/get/${about.ownerImage}`
+            : '/images/fallback.png',
+          mission: about.mission || '',
+          missionImage: about.missionImage
+            ? `${this.baseUrl}/api/attachment/get/${about.missionImage}`
+            : '/images/fallback.png',
+          vision: about.vision || '',
+          visionImage: about.visionImage
+            ? `${this.baseUrl}/api/attachment/get/${about.visionImage}`
+            : '/images/fallback.png',
+        };
+      },
+      error: (error) => {
+        this.aboutUsService.showError(
+          `Failed to fetch About Us data: ${error.message || 'Unknown error'}`
+        );
+        console.error('Error fetching About Us:', error);
+      },
+    });
+  }
+
+  fetchTeamMembers(): void {
+    this.teamService.getTeams().subscribe({
+      next: (data: Team[]) => {
+        this.state.team = data.map((member) => ({
+          id: Number(member.id),
+          name: member.name,
+          designation: member.designation,
+          image: member.image
+            ? `${this.baseUrl}/api/attachment/get/${member.image}`
+            : '/images/fallback.png',
+          description: member.description || '',
+          facebook: member.facebook || '',
+          twitter: member.twitter || '',
+          linkedin: member.linkedin || '',
+        }));
+      },
+      error: (error) => {
+        this.teamService.showError(
+          `Failed to fetch Team Members: ${error.message || 'Unknown error'}`
+        );
+        console.error('Error fetching Team Members:', error);
+      },
+    });
+  }
+
+  toggleSection(section: string): void {
+    this.expandedSections[section] = !this.expandedSections[section];
   }
 
   onToggle(member: TeamMember | null = null): void {
